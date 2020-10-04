@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SideNavService } from './core/services/side-nav.service';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,5 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'general-shop';
   showFiller = false;
+
 }
