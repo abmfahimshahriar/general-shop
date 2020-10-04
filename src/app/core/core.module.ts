@@ -1,3 +1,6 @@
+import { SnackBarComponent } from './../shared/components/snack-bar/snack-bar.component';
+import { SharedModule } from './../shared/shared.module';
+import { AuthenticationService } from './services/authentication.service';
 import { ToolBarComponent } from './components/tool-bar/tool-bar.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -15,6 +18,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatDividerModule} from '@angular/material/divider';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -25,6 +29,7 @@ import {MatDividerModule} from '@angular/material/divider';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     FormsModule,
     ReactiveFormsModule,
     MatToolbarModule,
@@ -35,17 +40,20 @@ import {MatDividerModule} from '@angular/material/divider';
     MatTabsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatDividerModule
+    MatDividerModule,
+    HttpClientModule,
   ],
   exports: [
     ToolBarComponent,
     SideNavComponent
   ],
   providers: [
-    SideNavService
+    SideNavService,
+    AuthenticationService
   ],
   entryComponents : [
-    AuthModalComponent
+    AuthModalComponent,
+    SnackBarComponent
   ]
 })
 export class CoreModule { }

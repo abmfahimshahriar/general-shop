@@ -1,3 +1,4 @@
+import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -12,7 +13,6 @@ import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,6 +22,7 @@ import { RouterModule } from '@angular/router';
       {path: 'test' , component: TestComponent },
     ]),
     CoreModule,
+    SharedModule,
     MatSidenavModule
   ],
   providers: [],

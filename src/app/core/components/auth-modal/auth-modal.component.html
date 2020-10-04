@@ -5,14 +5,15 @@
                 <div fxFlex="100">
                     <mat-form-field appearance="fill">
                         <mat-label>Enter your email</mat-label>
-                        <input matInput placeholder="pat@example.com" formControlName="Email" required>
-                        <mat-error *ngIf="loginForm.get('Email').hasError('required')">{{'Email required'}}</mat-error>
+                        <input matInput placeholder="pat@example.com" formControlName="email" required>
+                        <mat-error *ngIf="loginForm.get('email').hasError('required')">{{'Email required'}}</mat-error>
                     </mat-form-field>
                 </div>
                 <div fxFlex="100">
                     <mat-form-field appearance="fill">
                         <mat-label>Enter your password</mat-label>
-                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="Password">
+                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+                        <mat-error *ngIf="loginForm.get('password').hasError('required')">{{'Password required'}}</mat-error>
                         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                             [attr.aria-pressed]="hide">
                             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -33,14 +34,15 @@
                 <div fxFlex="100">
                     <mat-form-field appearance="fill">
                         <mat-label>Enter your email</mat-label>
-                        <input matInput placeholder="pat@example.com" formControlName="Email" required>
-                        <mat-error *ngIf="loginForm.get('Email').hasError('required')">{{'Email required'}}</mat-error>
+                        <input matInput placeholder="pat@example.com" formControlName="email" required>
+                        <mat-error *ngIf="loginForm.get('email').hasError('required')">{{'Email required'}}</mat-error>
                     </mat-form-field>
                 </div>
                 <div fxFlex="100">
                     <mat-form-field appearance="fill">
                         <mat-label>Enter your password</mat-label>
-                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="Password">
+                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+                        <mat-error *ngIf="signUpForm.get('password').hasError('required')">{{'Password required'}}</mat-error>
                         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                             [attr.aria-pressed]="hide">
                             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>

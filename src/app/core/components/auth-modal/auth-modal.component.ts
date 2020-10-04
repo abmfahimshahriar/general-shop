@@ -18,13 +18,13 @@ export class AuthModalComponent implements OnInit {
   ) { }
 
   loginForm = this.fb.group({
-    Email: ['',[Validators.required]],
-    Password: ['',[Validators.required]]
+    email: ['',[Validators.required]],
+    password: ['',[Validators.required]]
   });
 
   signUpForm = this.fb.group({
-    Email: ['',[Validators.required]],
-    Password: ['',[Validators.required]]
+    email: ['',[Validators.required]],
+    password: ['',[Validators.required]]
   });
 
   onLogin() {
