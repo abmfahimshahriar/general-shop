@@ -2,3 +2,42 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@import '~@angular/material/theming';
+@include mat-core();
+
+//@import './app/components/dashboard/dashboard.component.theme.scss';
+
+$primary-light: mat-palette($mat-brown);
+$accent-light: mat-palette($mat-teal);
+$warn-light: mat-palette($mat-red);
+
+$primary-theme: mat-light-theme($primary-light,
+    $accent-light,
+    $warn-light);
+
+
+
+$primary-dark: mat-palette($mat-purple);
+$accent-dark: mat-palette($mat-pink);
+$warn-dark: mat-palette($mat-red);
+
+
+$dark-theme: mat-dark-theme($primary-dark,
+    $accent-dark,
+    $warn-dark);
+
+// @mixin components-theme($theme) {
+//     @include app-dashboard($theme);
+// }
+
+
+.light-theme {
+    @include angular-material-theme($primary-theme);
+    //@include components-theme($primary-theme);
+}
+
+.dark-theme {
+    @include angular-material-theme($dark-theme);
+    //@include components-theme($dark-theme);
+}

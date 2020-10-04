@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { SideNavService } from '../../services/side-nav.service';
 
 @Component({
@@ -7,13 +7,16 @@ import { SideNavService } from '../../services/side-nav.service';
   styleUrls: ['./tool-bar.component.scss']
 })
 export class ToolBarComponent implements OnInit {
-
+  @Output() themeMode = new EventEmitter();
   constructor(private sideNavService: SideNavService) {
 
   }
 
   clickMenu() { 
     this.sideNavService.toggle();
+  }
+  changeTheme($event) {
+    this.themeMode.emit($event);
   }
 
   ngOnInit(): void {
