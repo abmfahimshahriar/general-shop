@@ -8,24 +8,34 @@ import {MatButtonModule} from '@angular/material/button';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { SideNavService } from './services/side-nav.service';
-import { RouterModule } from '@angular/router';
-import { TestComponent } from '../shared/components/test/test.component';
+import { AuthModalComponent } from './components/auth-modal/auth-modal.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 @NgModule({
   declarations: [
     ToolBarComponent,
-    SideNavComponent
+    SideNavComponent,
+    AuthModalComponent
   ],
   imports: [
     CommonModule,
-    // RouterModule.forChild([
-    //   {path: 'test' , component: TestComponent },
-    // ]),
+    FormsModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatDialogModule,
+    MatTabsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDividerModule
   ],
   exports: [
     ToolBarComponent,
@@ -33,6 +43,9 @@ import { TestComponent } from '../shared/components/test/test.component';
   ],
   providers: [
     SideNavService
+  ],
+  entryComponents : [
+    AuthModalComponent
   ]
 })
 export class CoreModule { }
