@@ -1,3 +1,4 @@
+import { HomeComponent } from './core/components/home/home.component';
 import { AdminModule } from './admin/admin.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
@@ -20,7 +21,14 @@ import { RouterModule } from '@angular/router';
     AppRoutingModule,
     BrowserAnimationsModule,
     RouterModule.forRoot([
-      {path: 'test' , component: TestComponent },
+      {
+        path: '',
+        component: HomeComponent
+      },
+      {
+        path: 'test', 
+        component: TestComponent 
+      },
       // {
       //   path: 'admin',
       //   loadChildren: () => AdminModule

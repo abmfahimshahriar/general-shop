@@ -20,14 +20,17 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatCardModule} from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
   declarations: [
     ToolBarComponent,
     SideNavComponent,
-    AuthModalComponent
+    AuthModalComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
@@ -43,6 +46,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatFormFieldModule,
     MatInputModule,
     MatDividerModule,
+    MatCardModule,
     HttpClientModule,
   ],
   exports: [
