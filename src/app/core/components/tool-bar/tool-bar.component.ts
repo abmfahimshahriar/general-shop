@@ -40,6 +40,7 @@ export class ToolBarComponent implements OnInit {
       this.authService.signInUser(response.value)
       .subscribe(responseData => {
         console.log(responseData );
+        localStorage.setItem('userData',JSON.stringify(responseData));
         this.openSnackBar(responseData);
       }, error => {
         this.error = error.error;

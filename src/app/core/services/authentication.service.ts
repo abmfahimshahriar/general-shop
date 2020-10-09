@@ -24,4 +24,11 @@ export class AuthenticationService {
       userData
     );
   }
+
+  getUser(userData) {
+    return this.http.post(
+      authUrls.getUser,
+      userData
+    )
+  }
 }
