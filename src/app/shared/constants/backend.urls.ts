@@ -4,3 +4,7 @@ export const authUrls = {
     signUp: baseUrl + '/auth/signup',
     getUser: baseUrl + '/auth/getUser',
 }
+
+export const productUrls = {
+    getAllProducts: baseUrl + '/products/getproducts',
+}
