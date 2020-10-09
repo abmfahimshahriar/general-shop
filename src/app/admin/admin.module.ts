@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminProductsComponent } from './components/admin-products/admin-products.component';
 import { AdminAuthGuardService as AdminAuthGuard } from './services/admin-auth-guard.service';
-
+import { AuthGuardService as AuthGuard } from '../core/services/auth-guard.service';
 
 @NgModule({
   declarations: [AdminProductsComponent],
@@ -18,7 +18,7 @@ import { AdminAuthGuardService as AdminAuthGuard } from './services/admin-auth-g
       {
         path: 'admin/products',
         component: AdminProductsComponent,
-        canActivate: [AdminAuthGuard]
+        canActivate: [AuthGuard,AdminAuthGuard]
       }
     ])
   ],

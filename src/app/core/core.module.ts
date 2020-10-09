@@ -1,3 +1,4 @@
+import { AuthGuardService } from './services/auth-guard.service';
 import { SnackBarComponent } from './../shared/components/snack-bar/snack-bar.component';
 import { SharedModule } from './../shared/shared.module';
 import { AuthenticationService } from './services/authentication.service';
@@ -49,7 +50,8 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   providers: [
     SideNavService,
-    AuthenticationService
+    AuthenticationService,
+    AuthGuardService
   ],
   entryComponents : [
     AuthModalComponent,

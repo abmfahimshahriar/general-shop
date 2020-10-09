@@ -1,15 +1,14 @@
-import { AuthenticationService } from './../../core/services/authentication.service';
 import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
-import { Observable } from 'rxjs/internal/Observable';
-import { map } from "rxjs/operators";
-
+import { AuthenticationService } from './authentication.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AdminAuthGuardService implements CanActivate {
-  
+export class AuthGuardService implements CanActivate {
+
   constructor(
     private authService : AuthenticationService
   ) { }
@@ -23,7 +22,7 @@ export class AdminAuthGuardService implements CanActivate {
     const userData = storageData.userData;
     return this.authService.getUser(userData).pipe(
       map((data: any) => {
-        if(data.userData.role === 'admin'){
+        if(data.userData){
           return true;
         }
         else{
