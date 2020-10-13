@@ -1,59 +1,68 @@
 <mat-tab-group>
     <mat-tab label="Login">
         <form [formGroup]="loginForm">
-            <div fxFlex fxLayout="column" fxLayoutAlign="center center">
-                <div fxFlex="100">
-                    <mat-form-field appearance="fill">
-                        <mat-label>Enter your email</mat-label>
-                        <input matInput placeholder="pat@example.com" formControlName="email" required>
-                        <mat-error *ngIf="loginForm.get('email').hasError('required')">{{'Email required'}}</mat-error>
-                    </mat-form-field>
+            <div fxLayout="column">
+                <div fxFlex fxLayout="column" fxLayoutAlign="center start">
+                    <div fxFlex="100">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Enter your email</mat-label>
+                            <input matInput placeholder="pat@example.com" formControlName="email" required>
+                            <mat-error *ngIf="loginForm.get('email').hasError('required')">{{'Email required'}}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="100">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Enter your password</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+                            <mat-error *ngIf="loginForm.get('password').hasError('required')">{{'Password required'}}
+                            </mat-error>
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
                 </div>
-                <div fxFlex="100">
-                    <mat-form-field appearance="fill">
-                        <mat-label>Enter your password</mat-label>
-                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
-                        <mat-error *ngIf="loginForm.get('password').hasError('required')">{{'Password required'}}</mat-error>
-                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                            [attr.aria-pressed]="hide">
-                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                        </button>
-                    </mat-form-field>
+                <mat-divider></mat-divider>
+                <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="32px">
+                    <button mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+                    <button mat-raised-button color="primary" (click)="onLogin()">Login</button>
                 </div>
             </div>
-            <mat-divider></mat-divider>
-            <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="32px">
-                <button mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
-                <button mat-raised-button color="primary" (click)="onLogin()">Login</button>
-            </div>
+
         </form>
     </mat-tab>
     <mat-tab label="Sign Up">
         <form [formGroup]="signUpForm">
-            <div fxFlex fxLayout="column" fxLayoutAlign="center center">
-                <div fxFlex="100">
-                    <mat-form-field appearance="fill">
-                        <mat-label>Enter your email</mat-label>
-                        <input matInput placeholder="pat@example.com" formControlName="email" required>
-                        <mat-error *ngIf="loginForm.get('email').hasError('required')">{{'Email required'}}</mat-error>
-                    </mat-form-field>
+            <div fxLayout="column">
+                <div fxFlex fxLayout="column" fxLayoutAlign="center start">
+                    <div fxFlex="100">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Enter your email</mat-label>
+                            <input matInput placeholder="pat@example.com" formControlName="email" required>
+                            <mat-error *ngIf="loginForm.get('email').hasError('required')">{{'Email required'}}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="100">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Enter your password</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+                            <mat-error *ngIf="signUpForm.get('password').hasError('required')">{{'Password required'}}
+                            </mat-error>
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
                 </div>
-                <div fxFlex="100">
-                    <mat-form-field appearance="fill">
-                        <mat-label>Enter your password</mat-label>
-                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
-                        <mat-error *ngIf="signUpForm.get('password').hasError('required')">{{'Password required'}}</mat-error>
-                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                            [attr.aria-pressed]="hide">
-                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                        </button>
-                    </mat-form-field>
+                <mat-divider></mat-divider>
+                <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="32px">
+                    <button mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+                    <button mat-raised-button color="primary" (click)="onSignUp()">Sign Up</button>
                 </div>
-            </div>
-            <mat-divider></mat-divider>
-            <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="32px">
-                <button mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
-                <button mat-raised-button color="primary" (click)="onSignUp()">Sign Up</button>
             </div>
         </form>
     </mat-tab>

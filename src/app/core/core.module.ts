@@ -23,6 +23,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatCardModule} from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { HomeComponent } from './components/home/home.component';
   imports: [
     CommonModule,
     SharedModule,
+    FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
     MatToolbarModule,

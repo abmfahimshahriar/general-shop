@@ -1,4 +1,10 @@
-<div class="products">
+<!-- <div class="products">
+    <div class="product-card" *ngFor="let product of products">
+        <app-product-card [product]="product"></app-product-card>
+    </div>
+</div> -->
+
+<div fxLayout="row wrap" fxLayoutAlign="center center">
     <div class="product-card" *ngFor="let product of products">
         <app-product-card [product]="product"></app-product-card>
     </div>
