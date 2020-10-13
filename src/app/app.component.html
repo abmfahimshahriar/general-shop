@@ -4,7 +4,9 @@
 
 <mat-drawer-container class="example-container" autosize>
     <div [class]="theme">
-        <app-side-nav></app-side-nav>
-        <router-outlet></router-outlet>
+        <div class="sidenav-content">
+            <app-side-nav></app-side-nav>
+            <router-outlet></router-outlet>
+        </div>
     </div>
 </mat-drawer-container>
