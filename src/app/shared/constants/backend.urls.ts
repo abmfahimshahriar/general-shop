@@ -7,4 +7,5 @@ export const authUrls = {
 
 export const productUrls = {
     getAllProducts: baseUrl + 'products/getproducts',
+    addProduct: baseUrl + 'products/addproduct',
 }

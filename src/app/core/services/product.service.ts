@@ -16,4 +16,11 @@ export class ProductService {
       productUrls.getAllProducts
     );
   }
+
+  addProduct(payload) {
+    return this.http.post(
+      productUrls.addProduct,
+      payload
+    );
+  }
 }
