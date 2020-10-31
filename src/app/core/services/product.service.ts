@@ -18,9 +18,16 @@ export class ProductService {
   }
 
   addProduct(payload) {
+    const storageData = JSON.parse(localStorage.getItem('userData'));
+    const token = storageData.userData.token;
     return this.http.post(
       productUrls.addProduct,
-      payload
+      payload,
+      {
+        headers : {
+          Authorization: 'Bearer ' + token
+        }
+      }
     );
   }
 }
