@@ -57,7 +57,7 @@ export class AddProductComponent implements OnInit {
     formData.append('freeShipping', this.addProductForm.value.freeShipping);
     formData.append('price', this.addProductForm.value.price);
     formData.append('image', this.file);
-    
+
     if (!this.prodId) {
       await this.productService.addProduct(formData)
         .subscribe(resultData => {
@@ -79,6 +79,10 @@ export class AddProductComponent implements OnInit {
         });
     }
 
+    this.router.navigate(['admin', 'products']);
+  }
+  
+  onCancel() {
     this.router.navigate(['admin', 'products']);
   }
 
