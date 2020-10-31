@@ -16,21 +16,20 @@ export class AddProductComponent implements OnInit {
   ) {
     this.initForm();
   }
-  
+
   initForm() {
     this.addProductForm = this.fb.group({
-      title: ['',Validators.required],
-      company: ['',Validators.required],
-      description: ['',Validators.required],
-      featured: [false,Validators.required],
-      freeShipping: [false,Validators.required],
-      price: [0,Validators.required],
-      image: [null,Validators.required],
+      title: ['', Validators.required],
+      company: ['', Validators.required],
+      description: ['', Validators.required],
+      featured: [false, Validators.required],
+      freeShipping: [false, Validators.required],
+      price: [0, Validators.required],
+      image: [null, Validators.required],
     });
   }
 
   onSubmit() {
-    console.log(this.addProductForm.value);
     const payload = {
       title: this.addProductForm.value.title,
       company: this.addProductForm.value.company,
@@ -40,15 +39,26 @@ export class AddProductComponent implements OnInit {
       price: this.addProductForm.value.price,
       image: this.file,
     }
-    this.productService.addProduct(payload)
-    .subscribe(result => {
-      console.log(result);
-    })
+    //console.log(payload);
+
+    const formData = new FormData();
+    formData.append('title', this.addProductForm.value.title);
+    formData.append('company', this.addProductForm.value.company);
+    formData.append('description', this.addProductForm.value.description);
+    formData.append('featured', this.addProductForm.value.featured);
+    formData.append('freeShipping', this.addProductForm.value.freeShipping);
+    formData.append('price', this.addProductForm.value.price);
+    formData.append('image', this.file);
+    console.log(formData);
+    this.productService.addProduct(formData)
+      .subscribe(result => {
+        console.log(result);
+      })
   }
 
-  processFile(event){
-    console.log(event.files[0]);
-    this.file = event.files[0];
+  processFile(event) {
+    console.log(event.target.files[0]);
+    this.file = event.target.files[0];
   }
 
   ngOnInit(): void {
