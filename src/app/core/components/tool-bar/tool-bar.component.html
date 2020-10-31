@@ -1,13 +1,32 @@
 <div class="app-toolbar toolbar-content">
     <mat-toolbar>
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="clickMenu()">
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
+            (click)="clickMenu()">
             <mat-icon>menu</mat-icon>
         </button>
         <span>My App</span>
         <span class="example-spacer"></span>
-        <button mat-icon-button class="example-icon favorite-icon" (click)="authentication()">
+        <button *ngIf="!isLoggedIn" mat-icon-button class="example-icon favorite-icon" (click)="authentication()">
+            <mat-icon>login</mat-icon>
+        </button>
+        <button *ngIf="isLoggedIn" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
             <mat-icon>account_circle</mat-icon>
         </button>
+        <mat-menu #menu="matMenu">
+            <button *ngIf="isAdmin" mat-menu-item (click)="goToManageProduct()">
+                Manage Products
+            </button>
+            <button *ngIf="isAdmin" mat-menu-item>
+                Manage Orders
+            </button>
+            <button mat-menu-item>
+                My Orders
+            </button>
+            <button mat-menu-item (click)="logOut()">
+                Log out
+            </button>
+        </mat-menu>
+
         <button mat-icon-button class="example-icon" (click)="changeTheme($event)">
             <mat-icon>invert_colors</mat-icon>
         </button>

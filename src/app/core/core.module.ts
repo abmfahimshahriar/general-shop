@@ -24,6 +24,7 @@ import {MatCardModule} from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatDividerModule,
     MatCardModule,
     HttpClientModule,
+    MatMenuModule,
   ],
   exports: [
     ToolBarComponent,
