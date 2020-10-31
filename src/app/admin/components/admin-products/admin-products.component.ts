@@ -19,10 +19,11 @@ export class AdminProductsComponent implements OnInit {
     private productService: ProductService,
     private router: Router,
   ) {
-    this.getProducts();
+    
   }
 
   ngOnInit(): void {
+    this.getProducts();
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
@@ -31,7 +32,6 @@ export class AdminProductsComponent implements OnInit {
   getProducts() {
     this.subscription = this.productService.getAllProducts().subscribe((data: any) => {
       this.products = data.products;
-      console.log(data.products);
     });
   }
 

@@ -1,6 +1,9 @@
 import { ProductService } from './../../../core/services/product.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarComponent } from '../../../shared/components/snack-bar/snack-bar.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-product',
@@ -10,11 +13,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AddProductComponent implements OnInit {
   addProductForm: FormGroup;
   file;
+  error = null;
   constructor(
     private fb: FormBuilder,
     private productService: ProductService,
+    private _snackBar: MatSnackBar,
+    private router: Router,
   ) {
     this.initForm();
+  }
+
+  ngOnInit(): void {
   }
 
   initForm() {
@@ -29,18 +38,7 @@ export class AddProductComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    const payload = {
-      title: this.addProductForm.value.title,
-      company: this.addProductForm.value.company,
-      description: this.addProductForm.value.description,
-      featured: this.addProductForm.value.featured,
-      freeShipping: this.addProductForm.value.freeShipping,
-      price: this.addProductForm.value.price,
-      image: this.file,
-    }
-    //console.log(payload);
-
+  async onSubmit() {
     const formData = new FormData();
     formData.append('title', this.addProductForm.value.title);
     formData.append('company', this.addProductForm.value.company);
@@ -50,18 +48,30 @@ export class AddProductComponent implements OnInit {
     formData.append('price', this.addProductForm.value.price);
     formData.append('image', this.file);
     console.log(formData);
-    this.productService.addProduct(formData)
-      .subscribe(result => {
-        console.log(result);
-      })
+    await this.productService.addProduct(formData)
+      .subscribe(resultData => {
+        this.openSnackBar(resultData);
+      },error => {
+        this.error = error.error;
+        console.log(this.error);
+        this.openSnackBar(this.error);
+      });
+      this.router.navigate(['admin','products']);
   }
 
   processFile(event) {
-    console.log(event.target.files[0]);
     this.file = event.target.files[0];
   }
 
-  ngOnInit(): void {
+  openSnackBar(data) {
+    this._snackBar.openFromComponent(SnackBarComponent, {
+      duration: 3000,
+      data: {
+        message: data.message
+      },
+
+    });
   }
+
 
 }

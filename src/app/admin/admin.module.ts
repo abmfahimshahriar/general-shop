@@ -1,3 +1,4 @@
+import { SnackBarComponent } from './../shared/components/snack-bar/snack-bar.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 import { CoreModule } from './../core/core.module';
@@ -33,6 +34,9 @@ import { AuthGuardService as AuthGuard } from '../core/services/auth-guard.servi
   ],
   providers: [
     AdminAuthGuardService
+  ],
+  entryComponents: [
+    SnackBarComponent
   ]
 })
 export class AdminModule { }
