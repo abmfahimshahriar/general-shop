@@ -15,6 +15,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -35,6 +37,9 @@ import {MatInputModule} from '@angular/material/input';
     MatFormFieldModule,
     FlexLayoutModule,
     MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatCheckboxModule,
   ],
   exports: [
     TestComponent,
@@ -51,6 +56,9 @@ import {MatInputModule} from '@angular/material/input';
     MatFormFieldModule,
     FlexLayoutModule,
     MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatCheckboxModule,
   ]
 })
 export class SharedModule { }

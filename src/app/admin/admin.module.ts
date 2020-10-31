@@ -1,3 +1,4 @@
+import { AddProductComponent } from './components/add-product/add-product.component';
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 import { CoreModule } from './../core/core.module';
 import { RouterModule } from '@angular/router';
@@ -9,7 +10,10 @@ import { AdminAuthGuardService as AdminAuthGuard } from './services/admin-auth-g
 import { AuthGuardService as AuthGuard } from '../core/services/auth-guard.service';
 
 @NgModule({
-  declarations: [AdminProductsComponent],
+  declarations: [
+    AdminProductsComponent,
+    AddProductComponent
+  ],
   imports: [
     CommonModule,
     SharedModule,
@@ -18,6 +22,11 @@ import { AuthGuardService as AuthGuard } from '../core/services/auth-guard.servi
       {
         path: 'admin/products',
         component: AdminProductsComponent,
+        canActivate: [AuthGuard,AdminAuthGuard]
+      },
+      {
+        path: 'admin/addproduct',
+        component: AddProductComponent,
         canActivate: [AuthGuard,AdminAuthGuard]
       }
     ])
