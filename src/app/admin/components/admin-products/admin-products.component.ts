@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ProductService } from '../../../core/services/product.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-products',
@@ -10,6 +11,7 @@ import { ProductService } from '../../../core/services/product.service';
 export class AdminProductsComponent implements OnInit {
 
   products: any[];
+  Search: FormControl;
   subscription: Subscription;
   displayedColumns: string[] = ['title', 'price', 'company', 'action'];
   constructor(
@@ -37,6 +39,10 @@ export class AdminProductsComponent implements OnInit {
 
   deleteProduct(product) {
     console.log(product);
+  }
+
+  addProduct() {
+    
   }
 
 }
