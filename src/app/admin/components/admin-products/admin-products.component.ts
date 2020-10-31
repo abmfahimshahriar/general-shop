@@ -36,7 +36,15 @@ export class AdminProductsComponent implements OnInit {
   }
 
   updateProduct(product) {
-    console.log(product);
+    const prodId = product._id;
+    this.router.navigate(
+      ['admin','updateproduct'],
+      {
+        queryParams: {
+          prodId: prodId
+        }
+      }
+    );
   }
 
   deleteProduct(product) {

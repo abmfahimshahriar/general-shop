@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../../../shared/components/snack-bar/snack-bar.component';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-product',
@@ -13,27 +13,37 @@ import { Router } from '@angular/router';
 export class AddProductComponent implements OnInit {
   addProductForm: FormGroup;
   file;
+  productDetails;
+  prodId;
+  buttonLabel = 'Add';
   error = null;
   constructor(
     private fb: FormBuilder,
     private productService: ProductService,
     private _snackBar: MatSnackBar,
     private router: Router,
+    private route: ActivatedRoute,
   ) {
     this.initForm();
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.productDetails = await this.route.snapshot.data.productDetails?.product;
+    this.prodId = await this.route.snapshot.queryParams.prodId;
+    if(this.prodId) {
+      this.buttonLabel = 'Update';
+    }
+    this.initForm();
   }
 
   initForm() {
     this.addProductForm = this.fb.group({
-      title: ['', Validators.required],
-      company: ['', Validators.required],
-      description: ['', Validators.required],
-      featured: [false, Validators.required],
-      freeShipping: [false, Validators.required],
-      price: [0, Validators.required],
+      title: [this.productDetails?.title, Validators.required],
+      company: [this.productDetails?.company, Validators.required],
+      description: [this.productDetails?.description, Validators.required],
+      featured: [this.productDetails?.featured, Validators.required],
+      freeShipping: [this.productDetails?.freeShipping, Validators.required],
+      price: [this.productDetails?.price, Validators.required],
       image: [null, Validators.required],
     });
   }
@@ -47,16 +57,29 @@ export class AddProductComponent implements OnInit {
     formData.append('freeShipping', this.addProductForm.value.freeShipping);
     formData.append('price', this.addProductForm.value.price);
     formData.append('image', this.file);
-    console.log(formData);
-    await this.productService.addProduct(formData)
-      .subscribe(resultData => {
-        this.openSnackBar(resultData);
-      },error => {
-        this.error = error.error;
-        console.log(this.error);
-        this.openSnackBar(this.error);
-      });
-      this.router.navigate(['admin','products']);
+    
+    if (!this.prodId) {
+      await this.productService.addProduct(formData)
+        .subscribe(resultData => {
+          this.openSnackBar(resultData);
+        }, error => {
+          this.error = error.error;
+          console.log(this.error);
+          this.openSnackBar(this.error);
+        });
+    }
+    else {
+      await this.productService.updateProduct(formData,this.prodId)
+        .subscribe(resultData => {
+          this.openSnackBar(resultData);
+        }, error => {
+          this.error = error.error;
+          console.log(this.error);
+          this.openSnackBar(this.error);
+        });
+    }
+
+    this.router.navigate(['admin', 'products']);
   }
 
   processFile(event) {

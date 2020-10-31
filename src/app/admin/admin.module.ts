@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { AdminProductsComponent } from './components/admin-products/admin-products.component';
 import { AdminAuthGuardService as AdminAuthGuard } from './services/admin-auth-guard.service';
 import { AuthGuardService as AuthGuard } from '../core/services/auth-guard.service';
+import { SingleProductDetailsResolver } from './resolvers/get-single-product-details-resolver';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,14 @@ import { AuthGuardService as AuthGuard } from '../core/services/auth-guard.servi
       {
         path: 'admin/addproduct',
         component: AddProductComponent,
+        canActivate: [AuthGuard,AdminAuthGuard]
+      },
+      {
+        path: 'admin/updateproduct',
+        component: AddProductComponent,
+        resolve: {
+          productDetails: SingleProductDetailsResolver
+        },
         canActivate: [AuthGuard,AdminAuthGuard]
       }
     ])

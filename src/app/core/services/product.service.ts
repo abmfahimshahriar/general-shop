@@ -11,17 +11,40 @@ export class ProductService {
     private http: HttpClient
   ) { }
 
+  getToken() {
+    const storageData = JSON.parse(localStorage.getItem('userData'));
+    return storageData.userData.token;
+  }
+
   getAllProducts() {
     return this.http.get(
       productUrls.getAllProducts
     );
   }
 
+  getSingleProduct(prodId) {
+    return this.http.get(
+      productUrls.getSingleProduct + prodId
+    );
+  }
+
   addProduct(payload) {
-    const storageData = JSON.parse(localStorage.getItem('userData'));
-    const token = storageData.userData.token;
+    const token = this.getToken();
     return this.http.post(
       productUrls.addProduct,
+      payload,
+      {
+        headers : {
+          Authorization: 'Bearer ' + token
+        }
+      }
+    );
+  }
+
+  updateProduct(payload, prodId) {
+    const token = this.getToken();
+    return this.http.put(
+      productUrls.updateProduct + prodId,
       payload,
       {
         headers : {
