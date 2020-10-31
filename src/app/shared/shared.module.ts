@@ -10,6 +10,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonModule} from '@angular/material/button';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 @NgModule({
@@ -25,12 +27,21 @@ import {MatIconModule} from '@angular/material/icon';
     MatExpansionModule,
     MatButtonModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule
   ],
   exports: [
     TestComponent,
     SnackBarComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    MatCardModule,
+    MatSnackBarModule,
+    MatExpansionModule,
+    MatButtonModule,
+    MatChipsModule,
+    MatIconModule,
+    MatTableModule,
+    MatMenuModule
   ]
 })
 export class SharedModule { }

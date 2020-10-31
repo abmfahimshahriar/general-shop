@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { ProductService } from '../../../core/services/product.service';
 
 @Component({
   selector: 'app-admin-products',
@@ -7,10 +9,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminProductsComponent implements OnInit {
 
-  constructor() { }
+  products: any[];
+  subscription: Subscription;
+  displayedColumns: string[] = ['title', 'price', 'company', 'action'];
+  constructor(
+    private productService: ProductService
+  ) {
+    this.getProducts();
+  }
 
   ngOnInit(): void {
-    
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  getProducts() {
+    this.subscription = this.productService.getAllProducts().subscribe((data: any) => {
+      this.products = data.products;
+      console.log(data.products);
+    });
+  }
+
+  updateProduct(product) {
+    console.log(product);
+  }
+
+  deleteProduct(product) {
+    console.log(product);
   }
 
 }
