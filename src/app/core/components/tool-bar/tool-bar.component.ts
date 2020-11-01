@@ -130,6 +130,8 @@ export class ToolBarComponent implements OnInit {
 
   logOut() {
     localStorage.removeItem('userData');
+    this.isLoggedIn = false;
+    this.isAdmin = false;
     this.router.navigate(['']);
   }
 
