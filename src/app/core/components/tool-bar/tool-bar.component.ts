@@ -50,9 +50,16 @@ export class ToolBarComponent implements OnInit {
     dialogRef.componentInstance.login.subscribe(async (response) => {
       console.log(response.value);
       this.authService.signInUser(response.value)
-        .subscribe(responseData => {
+        .subscribe((responseData:any) => {
           console.log(responseData);
-          localStorage.setItem('userData', JSON.stringify(responseData));
+          const user = {
+            message: responseData.message,
+            userData: {
+              token: responseData.userData.token,
+              userId: responseData.userData.userId
+            }
+          }
+          localStorage.setItem('userData', JSON.stringify(user));
           this.openSnackBar(responseData);
           this.setLoggedInFlag();
           this.setAdminAuthFlag();
