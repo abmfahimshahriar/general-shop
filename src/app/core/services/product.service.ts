@@ -53,4 +53,16 @@ export class ProductService {
       }
     );
   }
+
+  deleteProduct(prodId) {
+    const token = this.getToken();
+    return this.http.delete(
+      productUrls.deleteProduct + prodId,
+      {
+        headers : {
+          Authorization: 'Bearer ' + token
+        }
+      }
+    );
+  }
 }

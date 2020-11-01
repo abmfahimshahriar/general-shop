@@ -3,6 +3,8 @@ import { Subscription } from 'rxjs';
 import { ProductService } from '../../../core/services/product.service';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarComponent } from '../../../shared/components/snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-admin-products',
@@ -18,8 +20,9 @@ export class AdminProductsComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private router: Router,
+    private _snackBar: MatSnackBar,
   ) {
-    
+
   }
 
   ngOnInit(): void {
@@ -38,7 +41,7 @@ export class AdminProductsComponent implements OnInit {
   updateProduct(product) {
     const prodId = product._id;
     this.router.navigate(
-      ['admin','updateproduct'],
+      ['admin', 'updateproduct'],
       {
         queryParams: {
           prodId: prodId
@@ -48,11 +51,27 @@ export class AdminProductsComponent implements OnInit {
   }
 
   deleteProduct(product) {
-    console.log(product);
+    const prodId = product._id;
+    this.subscription = this.productService.deleteProduct(prodId)
+      .subscribe((data: any) => {
+        this.openSnackBar(data);
+        this.getProducts();
+      });
+    
   }
 
   addProduct() {
-    this.router.navigate(['admin','addproduct']);
+    this.router.navigate(['admin', 'addproduct']);
+  }
+
+  openSnackBar(data) {
+    this._snackBar.openFromComponent(SnackBarComponent, {
+      duration: 3000,
+      data: {
+        message: data.message
+      },
+
+    });
   }
 
 }
