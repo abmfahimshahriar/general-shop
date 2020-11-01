@@ -31,6 +31,11 @@ export class ToolBarComponent implements OnInit {
 
   }
 
+  ngOnInit(): void {
+    this.setLoggedInFlag();
+    this.setAdminAuthFlag();
+  }
+
   clickMenu() {
     this.sideNavService.toggle();
   }
@@ -133,7 +138,6 @@ export class ToolBarComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
-  }
+  
 
 }
