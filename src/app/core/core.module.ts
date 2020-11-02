@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { ProductService } from './services/product.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { SnackBarComponent } from './../shared/components/snack-bar/snack-bar.component';
@@ -52,6 +53,7 @@ import {MatMenuModule} from '@angular/material/menu';
     MatCardModule,
     HttpClientModule,
     MatMenuModule,
+    RouterModule
   ],
   exports: [
     ToolBarComponent,
