@@ -12,15 +12,16 @@ export class ProductCardComponent implements OnInit {
   @Output() addToCart = new EventEmitter<any>();
   baseUrl = baseUrl;
   count = 0;
-  emptyCart;
+  emptyCart = true;
   constructor() {
     
   }
 
   ngOnInit(): void {
     const cart = localStorage.getItem('cart');
-    if(cart.length === 0) this.emptyCart = true;
-    else this.emptyCart = false;
+    console.log(cart.length);
+    // if(cart || cart.length === 0) this.emptyCart = true;
+    // else this.emptyCart = false;
     console.log(this.product);
     this.product.image = this.baseUrl + this.product.image;
   }

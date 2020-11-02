@@ -25,22 +25,24 @@
         </mat-accordion>
     </mat-card-content>
     <mat-card-actions>
-        <div *ngIf="emptyCart;else cartSection" fxLayout="row" fxLayoutAlign="center center"> 
+        <div *ngIf="emptyCart; else cartSection" fxLayout="row" fxLayoutAlign="center center"> 
             <button mat-raised-button color="primary">
                 <mat-icon>add_shopping_cart</mat-icon>
                 Add to cart
             </button>
         </div>
-        <div #cartSection fxLayout="row" fxLayoutAlign="space-between center" >
-            <button mat-raised-button color="primary" (click)="onCart(product._id,'remove')">
-                <mat-icon>remove</mat-icon>
-            </button>
-            <div>
-                {{count}} in cart
+        <ng-template #cartSection>
+            <div fxLayout="row" fxLayoutAlign="space-between center" >
+                <button mat-raised-button color="primary" (click)="onCart(product._id,'remove')">
+                    <mat-icon>remove</mat-icon>
+                </button>
+                <div>
+                    {{count}} in cart
+                </div>
+                <button mat-raised-button color="primary" (click)="onCart(product._id,'add')">
+                    <mat-icon>add</mat-icon>
+                </button>
             </div>
-            <button mat-raised-button color="primary" (click)="onCart(product._id,'add')">
-                <mat-icon>add</mat-icon>
-            </button>
-        </div>
+        </ng-template>
     </mat-card-actions>
 </mat-card>
