@@ -1,5 +1,5 @@
 import { baseUrl } from './../../constants/backend.urls';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 
 @Component({
@@ -9,6 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ProductCardComponent implements OnInit {
   @Input() product;
+  @Output() addToCart = new EventEmitter<any>();
   baseUrl = baseUrl;
   constructor() {
     
@@ -17,6 +18,15 @@ export class ProductCardComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.product);
     this.product.image = this.baseUrl + this.product.image;
+  }
+
+  onCart(prodId,type) {
+    console.log(prodId,type);
+    const cartItem = {
+      prodId: prodId,
+      type: type
+    }
+    this.addToCart.emit(cartItem);
   }
 
 }

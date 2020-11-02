@@ -24,4 +24,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  cartManager(cartItem) {
+    console.log(cartItem);
+  }
+
 }
