@@ -37,7 +37,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     let tempCart = [...this.cart];
     let tempItem: any = tempCart
       .find(item => item._id === cartItem.prodId);
-    console.log(tempItem);
 
     if (!tempItem) {
       if (cartItem.type !== 'remove') {

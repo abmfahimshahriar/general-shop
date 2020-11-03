@@ -18,17 +18,29 @@ export class ProductCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const cart = localStorage.getItem('cart');
-    console.log(cart.length);
-    // if(cart || cart.length === 0) this.emptyCart = true;
-    // else this.emptyCart = false;
+    this.checkCart();
     console.log(this.product);
     this.product.image = this.baseUrl + this.product.image;
   }
+  checkCart() {
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    console.log(cart.length);
+    if(cart){
+      const inCartItem = cart.find(item => item._id === this.product._id);
+      if(inCartItem) {
+        this.count = inCartItem.count;
+        this.emptyCart = false;
+      }
+    }
+  }
 
   onCart(prodId,type) {
+    this.emptyCart = false;
     if(type === 'remove') {
-      if(this.count === 0) this.count = 0;
+      if(this.count === 1){
+        this.count = 0;
+        this.emptyCart = true;
+      }
       else this.count -= 1;
     }
     else{
