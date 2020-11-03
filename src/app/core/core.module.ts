@@ -26,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatMenuModule} from '@angular/material/menu';
+import { CartMenuComponent } from './components/cart-menu/cart-menu.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {MatMenuModule} from '@angular/material/menu';
     ToolBarComponent,
     SideNavComponent,
     AuthModalComponent,
-    HomeComponent
+    HomeComponent,
+    CartMenuComponent
   ],
   imports: [
     CommonModule,
