@@ -1,3 +1,4 @@
+import { ShoppingModule } from './shopping/shopping.module';
 import { HomeComponent } from './core/components/home/home.component';
 import { AdminModule } from './admin/admin.module';
 import { SharedModule } from './shared/shared.module';
@@ -38,6 +39,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     CoreModule,
     SharedModule,
     AdminModule,
+    ShoppingModule,
     MatSidenavModule,
     FlexLayoutModule
   ],
