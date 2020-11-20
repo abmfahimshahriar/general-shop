@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartTableComponent implements OnInit {
   cart;
-  displayedColumns: string[] = ['title', 'count','unitPrice', 'total'];
+  displayedColumns: string[] = ['image','title', 'count','unitPrice', 'total'];
   totalCost;
   constructor() { }
 
