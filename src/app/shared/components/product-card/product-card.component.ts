@@ -24,7 +24,6 @@ export class ProductCardComponent implements OnInit {
   }
   checkCart() {
     const cart = JSON.parse(localStorage.getItem('cart'));
-    console.log(cart.length);
     if(cart){
       const inCartItem = cart.find(item => item._id === this.product._id);
       if(inCartItem) {

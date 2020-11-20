@@ -8,14 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartMenuComponent implements OnInit {
 
-  cart;
+  cart=[];
   cartTotal;
+  noItems;
   constructor() { }
 
   ngOnInit(): void {
     this.cart = JSON.parse(localStorage.getItem('cart'));
-    const total = this.cart.map(item => item.total);
-    this.cartTotal = total.reduce((a, b) => a + b, 0);
+    console.log(this.cart);
+    if (!this.cart) {
+      this.noItems = true;
+    }
+    else {
+      const total = this.cart.map(item => item.total);
+      this.cartTotal = total.reduce((a, b) => a + b, 0);
+      this.noItems = false;
+    }
   }
 
 }

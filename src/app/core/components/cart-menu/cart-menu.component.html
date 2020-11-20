@@ -1,4 +1,4 @@
-<div fxLayout="column" fxLayoutAlign="center center" class="cart">
+<div *ngIf="!noItems; else noItemsTemplate" fxLayout="column" fxLayoutAlign="center center" class="cart">
     <div fxFlex="100" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="8px">
         <div *ngFor="let item of cart" fxLayout="column" fxLayoutAlign="center start" class="cart-item">
             <h3>Title :{{item.title}}</h3>
@@ -15,3 +15,8 @@
         </button>
     </div>
 </div>
+<ng-template #noItemsTemplate>
+    <div class="no-item">
+        There is no items in the cart currently.
+    </div>
+</ng-template>
