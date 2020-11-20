@@ -1,0 +1,63 @@
+<mat-card>
+    <div fxLayout="row">
+        <div fxLayout="column">
+            <div>
+                Enter your details:
+            </div>
+            <div>
+                <form [formGroup]="checkoutForm">
+                    <div fxLayout="column" fxLayoutGap="32px">
+                        <div>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Your name</mat-label>
+                                <input matInput placeholder="Name" formControlName="cusName">
+                                <mat-error *ngIf="checkoutForm.get('cusName').hasError('required')">{{'Name required'}}
+                                </mat-error>
+                                <mat-error *ngIf="checkoutForm.get('cusName').hasError('maxLength')">{{'Max length'}} {{checkoutForm.controls['cusName'].error.maxLength.requiredLength}}
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Your address</mat-label>
+                                <input matInput placeholder="Address" formControlName="address">
+                                <mat-error *ngIf="checkoutForm.get('address').hasError('required')">
+                                    {{'Address required'}}
+                                </mat-error>
+                                <mat-error *ngIf="checkoutForm.get('address').hasError('maxLength')">{{'Max length'}}{{checkoutForm.controls['address'].error.maxLength.requiredLength}}
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Your contact number</mat-label>
+                                <input matInput placeholder="Contact number" formControlName="contact">
+                                <mat-error *ngIf="checkoutForm.get('contact').hasError('required')">
+                                    {{'Contact number required'}}
+                                </mat-error>
+                                <mat-error *ngIf="checkoutForm.get('contact').hasError('maxLength')">
+                                    {{'Max length'}}{{checkoutForm.controls['contact'].error.maxLength.requiredLength}}
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="32px">
+                        <div>
+                            <button mat-raised-button color="warn" [routerLink]="['/shopping-cart']">
+                                Cancel
+                            </button>
+                        </div>
+                        <div>
+                            <button mat-raised-button color="primary" [disabled]="!checkoutForm.valid" (click)="onOrder()">
+                                Place order
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div>
+            your order summary
+        </div>
+    </div>
+</mat-card>

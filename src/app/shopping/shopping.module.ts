@@ -5,13 +5,16 @@ import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartTableComponent } from './components/cart-table/cart-table.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { AuthGuardService as AuthGuard } from '../core/services/auth-guard.service';
 
 
 
 @NgModule({
   declarations: [
     ShoppingCartComponent,
-    CartTableComponent
+    CartTableComponent,
+    CheckoutComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +23,13 @@ import { CartTableComponent } from './components/cart-table/cart-table.component
     RouterModule.forChild([
       {
         path: 'shopping-cart',
-        component: ShoppingCartComponent
+        component: ShoppingCartComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'checkout',
+        component: CheckoutComponent,
+        canActivate: [AuthGuard]
       }
     ])
   ]
