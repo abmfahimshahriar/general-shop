@@ -19,7 +19,6 @@ export class ProductCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkCart();
-    console.log(this.product);
     this.product.image = this.baseUrl + this.product.image;
   }
   checkCart() {

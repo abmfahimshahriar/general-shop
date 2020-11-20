@@ -15,7 +15,6 @@ export class CartMenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.cart = JSON.parse(localStorage.getItem('cart'));
-    console.log(this.cart);
     if (!this.cart) {
       this.noItems = true;
     }

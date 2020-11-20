@@ -55,6 +55,7 @@ export class CheckoutComponent implements OnInit {
         console.log(this.error);
         this.openSnackBar(this.error);
       });
+      localStorage.removeItem('cart');
       this.router.navigate(['']);
   }
   getTotalCost() {
