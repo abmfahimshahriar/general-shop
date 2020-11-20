@@ -1,0 +1,27 @@
+.box {
+    box-sizing: border-box;
+    border: 2px solid rgb(153, 134, 134);
+    border-radius: 8px;
+}
+
+.order-form {
+    padding: 24px 0px 24px 24px;
+}
+
+.cart-list {
+    padding: 16px;
+}
+
+.cart-item {
+    font-size: 16px;
+}
+
+.total-text {
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.form-wrapper {
+    padding: 16px 0px;
+}

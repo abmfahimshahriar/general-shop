@@ -1,10 +1,10 @@
 <mat-card>
-    <div fxLayout="row">
-        <div fxLayout="column">
-            <div>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxFlex="48" fxLayout="column" class="box order-form" >
+            <div class="title">
                 Enter your details:
             </div>
-            <div>
+            <div class="form-wrapper">
                 <form [formGroup]="checkoutForm">
                     <div fxLayout="column" fxLayoutGap="32px">
                         <div>
@@ -41,23 +41,33 @@
                             </mat-form-field>
                         </div>
                     </div>
-                    <div fxLayout="row" fxLayoutGap="32px">
-                        <div>
-                            <button mat-raised-button color="warn" [routerLink]="['/shopping-cart']">
-                                Cancel
-                            </button>
-                        </div>
-                        <div>
-                            <button mat-raised-button color="primary" [disabled]="!checkoutForm.valid" (click)="onOrder()">
-                                Place order
-                            </button>
-                        </div>
-                    </div>
                 </form>
             </div>
+            <div fxLayout="row" fxLayoutGap="32px">
+                <div>
+                    <button mat-raised-button color="warn" [routerLink]="['/shopping-cart']">
+                        Cancel
+                    </button>
+                </div>
+                <div>
+                    <button mat-raised-button color="primary" [disabled]="!checkoutForm.valid" (click)="onOrder()">
+                        Place order
+                    </button>
+                </div>
+            </div>
         </div>
-        <div>
-            your order summary
+        <div fxFlex="48" fxLayout="column" class="box order-form">
+            <div class="title">
+                Your order summary:
+            </div>
+            <div class="cart-list" fxLayout="column" fxLayoutGap="16px">
+                <div *ngFor="let item of cart" class="cart-item">
+                    {{item.title}} {{'x'}} {{item.count}}
+                </div>
+                <div class="total-text">
+                    {{'Total: '}} {{totalCost}}
+                </div>
+            </div>
         </div>
     </div>
 </mat-card>
