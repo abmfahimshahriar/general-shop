@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgRedux } from '@angular-redux/store';
+import { IAppState } from '../../../store';
+import { UPDATED_CART } from '../../../actions';
 
 @Component({
   selector: 'app-cart-table',
@@ -7,13 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartTableComponent implements OnInit {
   cart;
-  displayedColumns: string[] = ['image','title', 'count','unitPrice', 'total'];
+  displayedColumns: string[] = ['image', 'title', 'count', 'unitPrice', 'total'];
   totalCost;
-  constructor() { }
+  reduxSubscription;
+  constructor(
+    private ngRedux: NgRedux<IAppState>,
+  ) {
+    this.cart = this.ngRedux.getState().cart;
+  }
 
-  ngOnInit(): void {
-    this.cart = JSON.parse(localStorage.getItem('cart'));
-    this.getTotalCost();
+  ngOnInit() {
+    
   }
 
   onCart(prodId, type) {
@@ -42,11 +49,13 @@ export class CartTableComponent implements OnInit {
       tempItem.total = parseFloat(tempItem.total.toFixed(2));
     }
     this.cart = [...tempCart];
-    localStorage.setItem('cart', JSON.stringify(this.cart));
+    // localStorage.setItem('cart', JSON.stringify(this.cart));
+    this.ngRedux.dispatch({ type: UPDATED_CART, body: this.cart });
     this.getTotalCost();
   }
 
   getTotalCost() {
+    this.cart = this.ngRedux.getState().cart;
     const total = this.cart.map(item => item.total);
     this.totalCost = total.reduce((a, b) => a + b, 0);
   }

@@ -4,6 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SnackBarComponent } from '../../../shared/components/snack-bar/snack-bar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { IAppState } from '../../../store';
+import { NgRedux } from '@angular-redux/store';
+import { UPDATED_CART } from '../../../actions';
 
 @Component({
   selector: 'app-checkout',
@@ -21,11 +24,12 @@ export class CheckoutComponent implements OnInit {
     private shoppingService: ShoppingService,
     private _snackBar: MatSnackBar,
     private router: Router,
+    private ngRedux: NgRedux<IAppState>
   ) {
     this.initForm();
   }
   ngOnInit(): void {
-    this.cart = JSON.parse(localStorage.getItem('cart'));
+    this.cart = this.ngRedux.getState().cart;
     this.getTotalCost();
   }
 
@@ -55,7 +59,7 @@ export class CheckoutComponent implements OnInit {
         console.log(this.error);
         this.openSnackBar(this.error);
       });
-      localStorage.removeItem('cart');
+      this.ngRedux.dispatch({ type: UPDATED_CART, body: [] });
       this.router.navigate(['']);
   }
   getTotalCost() {

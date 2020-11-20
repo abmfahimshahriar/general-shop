@@ -1,6 +1,9 @@
+import { UPDATED_CART } from './../../../actions';
+import { IAppState } from './../../../store';
 import { ProductService } from './../../services/product.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import {NgRedux, select} from '@angular-redux/store'; 
 
 @Component({
   selector: 'app-home',
@@ -11,25 +14,27 @@ export class HomeComponent implements OnInit, OnDestroy {
   products: any[];
   cart: any[] = [];
   subscription: Subscription;
+  reduxSubscription:Subscription;
+
   constructor(
-    private productService: ProductService
+    private productService: ProductService,
+    private ngRedux: NgRedux<IAppState>,
   ) {
     this.subscription = this.productService.getAllProducts().subscribe((data: any) => {
       this.products = data.products;
-    })
+    });
+    this.cart = this.ngRedux.getState().cart;
   }
 
   ngOnInit(): void {
-    const cart = JSON.parse(localStorage.getItem('cart'));
-    if (cart) {
-      this.cart = cart;
-    }
+    
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
   cartManager(cartItem) {
+    this.cart = this.ngRedux.getState().cart;
     let num = 1;
     if (cartItem.type === 'remove') {
       num = -1;
@@ -62,7 +67,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
     }
     this.cart = [...tempCart];
-    localStorage.setItem('cart', JSON.stringify(this.cart));
+    // localStorage.setItem('cart', JSON.stringify(this.cart));
+
+    // redux code
+    this.ngRedux.dispatch({type: UPDATED_CART,body:this.cart});
   }
 
 }

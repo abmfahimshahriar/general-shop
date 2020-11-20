@@ -13,6 +13,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { TestComponent } from './shared/components/test/test.component';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {NgRedux,NgReduxModule} from '@angular-redux/store';
+import {IAppState,rootReducer,INITIAL_STATE} from './store'
 
 @NgModule({
   declarations: [
@@ -41,9 +43,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     AdminModule,
     ShoppingModule,
     MatSidenavModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgReduxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(ngRedux: NgRedux<IAppState>) {
+    ngRedux.configureStore(rootReducer,INITIAL_STATE);
+  }
+}
