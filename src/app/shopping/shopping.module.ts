@@ -4,12 +4,14 @@ import { CoreModule } from './../core/core.module';
 import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CartTableComponent } from './components/cart-table/cart-table.component';
 
 
 
 @NgModule({
   declarations: [
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    CartTableComponent
   ],
   imports: [
     CommonModule,
