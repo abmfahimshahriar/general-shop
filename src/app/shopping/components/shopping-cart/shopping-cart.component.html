@@ -6,5 +6,11 @@
         <div>
             <app-cart-table></app-cart-table>
         </div>
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <button mat-stroked-button color="primary" [routerLink]="['/checkout']">
+                <mat-icon>remove</mat-icon>
+                Checkout
+            </button>
+        </div>
     </div>
 </mat-card>
