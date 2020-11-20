@@ -11,4 +11,5 @@ export const productUrls = {
     getSingleProduct: baseUrl + 'products/getsingleproduct/',
     updateProduct: baseUrl + 'products/addproduct/',
     deleteProduct: baseUrl + 'products/deleteproduct/',
+    placeOrder: baseUrl + 'products/addorder/'
 }
