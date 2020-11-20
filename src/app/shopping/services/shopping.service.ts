@@ -18,7 +18,7 @@ export class ShoppingService {
 
   placeOrder(payload) {
     const token = this.getToken();
-    return this.http.post(
+    return this.http.put(
       productUrls.placeOrder,
       payload,
       {
