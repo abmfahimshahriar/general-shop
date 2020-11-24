@@ -6,13 +6,14 @@ export const authUrls = {
 }
 
 export const productUrls = {
-    getAllProducts: baseUrl + 'products/getproducts',
-    addProduct: baseUrl + 'products/addproduct',
-    getSingleProduct: baseUrl + 'products/getsingleproduct/',
-    updateProduct: baseUrl + 'products/addproduct/',
-    deleteProduct: baseUrl + 'products/deleteproduct/',
-    placeOrder: baseUrl + 'products/addorder/',
-    getOrders: baseUrl + 'products/getorders',
-    changeOrderStatus: baseUrl + 'products/updateorderstatus/',
-    deleteOrder: baseUrl + 'products/deleteorder/',
+    getAllProducts: baseUrl + 'products/getProducts',
+    addProduct: baseUrl + 'products/addProduct',
+    getSingleProduct: baseUrl + 'products/getSingleProduct/',
+    updateProduct: baseUrl + 'products/updateProduct/',
+    deleteProduct: baseUrl + 'products/deleteProduct/',
+    placeOrder: baseUrl + 'orders/addOrder/',
+    getOrders: baseUrl + 'orders/getOrders',
+    changeOrderStatus: baseUrl + 'orders/updateOrderStatus/',
+    deleteOrder: baseUrl + 'orders/deleteOrder/',
+    myOrders: baseUrl + 'orders/myOrders/',
 }
