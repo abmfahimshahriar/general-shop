@@ -53,4 +53,16 @@ export class OrderService {
       }
     );
   }
+
+  getMyOrders(userId) {
+    const token = this.getToken();
+    return this.http.get(
+      productUrls.myOrders + userId,
+      {
+        headers : {
+          Authorization: 'Bearer ' + token
+        }
+      }
+    );
+  }
 }

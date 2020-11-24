@@ -1,3 +1,5 @@
+import { Subscription } from 'rxjs';
+import { OrderService } from './../../services/order.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyOrdersComponent implements OnInit {
 
-  constructor() { }
+  myOrders;
+  subscription: Subscription;
+
+  constructor(
+    private orderService: OrderService
+  ) { }
 
   ngOnInit(): void {
+    this.getMyOrders();
   }
 
+  getMyOrders() {
+    const storageData = JSON.parse(localStorage.getItem('userData'));
+    const userId = storageData.userData.userId;
+    this.subscription = this.orderService.getMyOrders(userId).subscribe((data: any) => {
+      this.myOrders = data.orders;
+      console.log(this.myOrders);
+    });
+  }
 }
