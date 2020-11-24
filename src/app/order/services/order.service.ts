@@ -41,4 +41,16 @@ export class OrderService {
       }
     );
   }
+
+  deleteOrder(orderId) {
+    const token = this.getToken();
+    return this.http.delete(
+      productUrls.deleteOrder + orderId,
+      {
+        headers : {
+          Authorization: 'Bearer ' + token
+        }
+      }
+    );
+  }
 }

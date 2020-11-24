@@ -1,3 +1,4 @@
+import { MatDividerModule } from '@angular/material/divider';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CoreModule } from './../core/core.module';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
@@ -40,6 +41,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     FormsModule,
     ReactiveFormsModule,
     MatCheckboxModule,
+    MatDividerModule,
   ],
   exports: [
     TestComponent,
@@ -59,6 +61,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     FormsModule,
     ReactiveFormsModule,
     MatCheckboxModule,
+    MatDividerModule,
   ]
 })
 export class SharedModule { }

@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class OrderCardComponent implements OnInit {
   @Input() orderDetails;
   @Output() changeStatus = new EventEmitter<any>();
+  @Output() deleteOrder = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit(): void {
@@ -15,5 +16,9 @@ export class OrderCardComponent implements OnInit {
 
   chageOrderStatus(orderId) {
     this.changeStatus.emit(orderId)
+  }
+
+  onDeleteOrder(orderId) {
+    this.deleteOrder.emit(orderId);
   }
 }

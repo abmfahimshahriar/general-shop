@@ -43,6 +43,14 @@ export class AdminOrderListComponent implements OnInit {
       });
   }
 
+  onDeleteOrder(orderId) {
+    this.subscription = this.orderService.deleteOrder(orderId)
+      .subscribe((data: any) => {
+        this.openSnackBar(data);
+        this.getOrders();
+      });
+  }
+
   openSnackBar(data) {
     this._snackBar.openFromComponent(SnackBarComponent, {
       duration: 3000,

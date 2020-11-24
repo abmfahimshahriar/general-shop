@@ -24,12 +24,25 @@
                 </mat-chip>
             </mat-chip-list>
         </div>
-        <div fxLayout="column" fxLayoutAlign="center center">
-            <button mat-icon-button (click)="chageOrderStatus(orderDetails._id)">
-                <mat-icon>autorenew</mat-icon>
-            </button>
-            <div>
-                <b>Change Status</b>
+        <div>
+            <mat-divider></mat-divider>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxLayout="column" fxLayoutAlign="center center">
+                <button mat-icon-button (click)="chageOrderStatus(orderDetails._id)">
+                    <mat-icon>autorenew</mat-icon>
+                </button>
+                <div>
+                    <b>Change Status</b>
+                </div>
+            </div>
+            <div fxLayout="column" fxLayoutAlign="center center">
+                <button mat-icon-button (click)="onDeleteOrder(orderDetails._id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+                <div>
+                    <b>Delete Order</b>
+                </div>
             </div>
         </div>
     </div>
