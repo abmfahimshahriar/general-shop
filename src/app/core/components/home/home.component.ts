@@ -1,9 +1,9 @@
 import { UPDATED_CART } from './../../../actions';
 import { IAppState } from './../../../store';
 import { ProductService } from './../../services/product.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
-import {NgRedux, select} from '@angular-redux/store'; 
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Subscription} from 'rxjs';
+import {NgRedux} from '@angular-redux/store'; 
 
 @Component({
   selector: 'app-home',
@@ -14,10 +14,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   products: any[];
   cart: any[] = [];
   subscription: Subscription;
+  searchKeySubscription;
   reduxSubscription:Subscription;
   pageLimit = 5;
   pageNumber = 0;
-
+  searchKey;
+  loading = true;
+  @ViewChild("query") query:ElementRef; 
   paginatorProperties = {
     length: 100,
     pageSize: 5,
@@ -38,11 +41,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   async getProducts() {
     const payload = {
       pageNumber: this.pageNumber,
-      pageLimit: this.pageLimit
+      pageLimit: this.pageLimit,
+      searchKey: this.searchKey? this.searchKey : null
     }
     this.subscription = this.productService.getAllProducts(payload).subscribe((data: any) => {
       this.products = data.products;
       this.paginatorProperties.length = data.totalItems;
+      this.loading = false;
     });
   }
   ngOnDestroy() {
@@ -92,7 +97,22 @@ export class HomeComponent implements OnInit, OnDestroy {
   pageEvent(event) {
     this.pageNumber = event.pageIndex;
     this.pageLimit = event.pageSize;
+    this.paginatorProperties.pageSize = event.pageSize;
+    this.loading = true;
     this.getProducts();
+  }
+
+  filter(searchKey) {
+    // this.searchKeySubscription = fromEvent(this.query.nativeElement, 'keyup');
+    // this.searchKeySubscription.pipe(debounceTime(1000)).subscribe(c => {
+    //   console.log(searchKey);
+    //   this.searchKey = searchKey;
+    //   this.getProducts();
+    // })
+    this.searchKey = searchKey;
+    this.loading = true;
+    this.getProducts();
+    
   }
 
 }

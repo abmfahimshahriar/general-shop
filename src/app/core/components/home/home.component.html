@@ -3,18 +3,21 @@
         <div>
             <mat-form-field appearance="outline">
                 <mat-label>Search</mat-label>
-                <input matInput placeholder="Search">
+                <input #query (input)="filter($event.target.value)" matInput placeholder="Search">
                 <mat-icon matPrefix>search</mat-icon>
             </mat-form-field>
         </div>
     </div>
-    <div fxLayout="row wrap" fxLayoutAlign="center center">
+    <div *ngIf="!loading" fxLayout="row wrap" fxLayoutAlign="center center">
         <div class="product-card" *ngFor="let product of products">
             <app-product-card [product]="product" (addToCart)="cartManager($event)"></app-product-card>
         </div>
     </div>
-    <div>
+    <div *ngIf="!loading">
         <mat-paginator [length]="paginatorProperties.length" [pageSize]="paginatorProperties.pageSize" [pageSizeOptions]="paginatorProperties.pageSizeOptions" (page)="pageEvent($event)">
         </mat-paginator>
+    </div>
+    <div *ngIf="loading">
+        <mat-spinner></mat-spinner>
     </div>
 </div>
