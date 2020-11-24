@@ -16,10 +16,10 @@
             <button *ngIf="isAdmin" mat-menu-item (click)="goToManageProduct()">
                 Manage Products
             </button>
-            <button *ngIf="isAdmin" mat-menu-item>
+            <button *ngIf="isAdmin" [routerLink]="['/admin/orders']" mat-menu-item>
                 Manage Orders
             </button>
-            <button mat-menu-item>
+            <button [routerLink]="['/my-orders']" mat-menu-item>
                 My Orders
             </button>
             <button mat-menu-item (click)="logOut()">

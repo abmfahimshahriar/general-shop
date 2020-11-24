@@ -1,3 +1,4 @@
+import { OrderModule } from './order/order.module';
 import { ShoppingModule } from './shopping/shopping.module';
 import { HomeComponent } from './core/components/home/home.component';
 import { AdminModule } from './admin/admin.module';
@@ -44,7 +45,8 @@ import {IAppState,rootReducer,INITIAL_STATE} from './store'
     ShoppingModule,
     MatSidenavModule,
     FlexLayoutModule,
-    NgReduxModule
+    NgReduxModule,
+    OrderModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
