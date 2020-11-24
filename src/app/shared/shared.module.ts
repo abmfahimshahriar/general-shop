@@ -18,6 +18,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     ReactiveFormsModule,
     MatCheckboxModule,
     MatDividerModule,
+    MatPaginatorModule,
   ],
   exports: [
     TestComponent,
@@ -62,6 +64,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     ReactiveFormsModule,
     MatCheckboxModule,
     MatDividerModule,
+    MatPaginatorModule
   ]
 })
 export class SharedModule { }

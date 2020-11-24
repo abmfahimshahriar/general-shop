@@ -15,6 +15,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   cart: any[] = [];
   subscription: Subscription;
   reduxSubscription:Subscription;
+  pageLimit = 10;
+  pageNumber = 1;
+
+  paginatorProperties = {
+    length: 100,
+    pageSize: 10,
+    pageSizeOptions: [5, 10, 25, 100],
+  }
 
   constructor(
     private productService: ProductService,
@@ -71,6 +79,11 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     // redux code
     this.ngRedux.dispatch({type: UPDATED_CART,body:this.cart});
+  }
+
+  pageEvent(event) {
+    this.pageNumber = event.pageIndex + 1;
+    this.pageLimit = event.pageSize;
   }
 
 }
