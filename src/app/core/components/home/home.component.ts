@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   pageNumber = 0;
   searchKey;
   loading = true;
+  noItem = false;
   @ViewChild("query") query:ElementRef; 
   paginatorProperties = {
     length: 100,
@@ -48,6 +49,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.products = data.products;
       this.paginatorProperties.length = data.totalItems;
       this.loading = false;
+      this.noItem = data.totalItems > 0 ? false : true;
     });
   }
   ngOnDestroy() {
