@@ -1,0 +1,14 @@
+
+::ng-deep {
+    app-order-card {
+        .mat-card {
+            width: 250px;
+            height: 250px;
+        }
+    }
+}
+
+.orderlist {
+    height: 100px;
+    overflow-y: auto;
+}

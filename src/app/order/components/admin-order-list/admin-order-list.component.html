@@ -11,11 +11,12 @@
             
         </div>
 
-        <div fxLayout="row wrap" fxLayoutGap="16px">
-            <div *ngFor="let item of orders">
-                <app-order-card [orderDetails]="item" (changeStatus)="changeOrderStatus($event)" (deleteOrder)="onDeleteOrder($event)"></app-order-card>
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <div fxLayout="row wrap" fxLayoutAlign="center center">
+                <div *ngFor="let item of orders">
+                    <app-order-card [orderDetails]="item" (changeStatus)="changeOrderStatus($event)" (deleteOrder)="onDeleteOrder($event)"></app-order-card>
+                </div>
             </div>
-            
         </div>
         
     </div>
