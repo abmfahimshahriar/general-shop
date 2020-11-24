@@ -28,4 +28,17 @@ export class OrderService {
       }
     );
   }
+
+  changeOrderStatus(orderId) {
+    const token = this.getToken();
+    return this.http.put(
+      productUrls.changeOrderStatus + orderId,
+      {},
+      {
+        headers : {
+          Authorization: 'Bearer ' + token
+        }
+      }
+    );
+  }
 }

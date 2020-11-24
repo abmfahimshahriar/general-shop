@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormControl } from '@angular/forms';
+import { SnackBarComponent } from '../../../shared/components/snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-admin-order-list',
@@ -35,7 +36,21 @@ export class AdminOrderListComponent implements OnInit {
   }
 
   changeOrderStatus(orderId) {
-    
+    this.subscription = this.orderService.changeOrderStatus(orderId)
+      .subscribe((data: any) => {
+        this.openSnackBar(data);
+        this.getOrders();
+      });
+  }
+
+  openSnackBar(data) {
+    this._snackBar.openFromComponent(SnackBarComponent, {
+      duration: 3000,
+      data: {
+        message: data.message
+      },
+
+    });
   }
 
 }

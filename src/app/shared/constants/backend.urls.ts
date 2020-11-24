@@ -13,4 +13,5 @@ export const productUrls = {
     deleteProduct: baseUrl + 'products/deleteproduct/',
     placeOrder: baseUrl + 'products/addorder/',
     getOrders: baseUrl + 'products/getorders',
+    changeOrderStatus: baseUrl + 'products/updateorderstatus/',
 }
