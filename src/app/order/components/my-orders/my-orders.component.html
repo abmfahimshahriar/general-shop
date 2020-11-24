@@ -11,7 +11,7 @@
             
         </div>
 
-        <div>
+        <div *ngIf="myOrders; else noItemsTemplate">
             <table mat-table [dataSource]="myOrders" class="mat-elevation-z8">
 
                 <ng-container matColumnDef="products">
@@ -39,5 +39,10 @@
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
         </div>
+        <ng-template #noItemsTemplate>
+            <div class="no-item">
+                You have not ordered any items yet.
+            </div>
+        </ng-template>
     </div>
 </mat-card>

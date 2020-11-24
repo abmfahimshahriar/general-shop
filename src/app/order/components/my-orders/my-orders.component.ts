@@ -25,7 +25,6 @@ export class MyOrdersComponent implements OnInit {
     const userId = storageData.userData.userId;
     this.subscription = this.orderService.getMyOrders(userId).subscribe((data: any) => {
       this.myOrders = data.orders;
-      console.log(this.myOrders);
     });
   }
 }

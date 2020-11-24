@@ -31,7 +31,6 @@ export class AdminOrderListComponent implements OnInit {
   getOrders() {
     this.subscription = this.orderService.getAllOrders().subscribe((data: any) => {
       this.orders = data.orders;
-      console.log(this.orders);
     });
   }
 

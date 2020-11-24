@@ -18,6 +18,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     font-size: 24px;
 }
 
+.no-item {
+    padding: 32px;
+    font-size: 18px;
+}
+
 $primary-light: mat-palette($mat-indigo);
 $accent-light: mat-palette($mat-teal);
 $warn-light: mat-palette($mat-red);
