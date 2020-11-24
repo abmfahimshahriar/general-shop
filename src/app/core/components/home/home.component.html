@@ -14,14 +14,7 @@
                 <app-product-card [product]="product" (addToCart)="cartManager($event)"></app-product-card>
             </div>
         </div>
-        <div>
-            <mat-paginator [length]="paginatorProperties.length" 
-            [pageSize]="paginatorProperties.pageSize" 
-            [pageSizeOptions]="paginatorProperties.pageSizeOptions"
-            [showFirstLastButtons]="'true'"
-            (page)="pageEvent($event)">
-            </mat-paginator>
-        </div>
+        
     </div>
     
     <div *ngIf="loading">
@@ -29,5 +22,14 @@
     </div>
     <div *ngIf="noItem">
         No products matched your search!
+    </div>
+
+    <div>
+        <mat-paginator [length]="paginatorProperties.length" 
+        [pageSize]="paginatorProperties.pageSize" 
+        [pageSizeOptions]="paginatorProperties.pageSizeOptions"
+        [showFirstLastButtons]="'true'"
+        (page)="pageEvent($event)">
+        </mat-paginator>
     </div>
 </div>
