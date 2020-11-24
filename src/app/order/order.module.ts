@@ -1,3 +1,4 @@
+import { OrderService } from './services/order.service';
 import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -29,7 +30,7 @@ import { SnackBarComponent } from '../shared/components/snack-bar/snack-bar.comp
     ])
   ],
   providers: [
-
+    OrderService,
   ],
   entryComponents: [
     SnackBarComponent
