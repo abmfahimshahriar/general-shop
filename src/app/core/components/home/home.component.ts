@@ -15,12 +15,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   cart: any[] = [];
   subscription: Subscription;
   reduxSubscription:Subscription;
-  pageLimit = 10;
-  pageNumber = 1;
+  pageLimit = 5;
+  pageNumber = 0;
 
   paginatorProperties = {
     length: 100,
-    pageSize: 10,
+    pageSize: 5,
     pageSizeOptions: [5, 10, 25, 100],
   }
 
@@ -28,14 +28,22 @@ export class HomeComponent implements OnInit, OnDestroy {
     private productService: ProductService,
     private ngRedux: NgRedux<IAppState>,
   ) {
-    this.subscription = this.productService.getAllProducts().subscribe((data: any) => {
-      this.products = data.products;
-    });
     this.cart = this.ngRedux.getState().cart;
   }
 
-  ngOnInit(): void {
-    
+  async ngOnInit() {
+    this.getProducts();
+  }
+
+  async getProducts() {
+    const payload = {
+      pageNumber: this.pageNumber,
+      pageLimit: this.pageLimit
+    }
+    this.subscription = this.productService.getAllProducts(payload).subscribe((data: any) => {
+      this.products = data.products;
+      this.paginatorProperties.length = data.totalItems;
+    });
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
@@ -82,8 +90,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   pageEvent(event) {
-    this.pageNumber = event.pageIndex + 1;
+    this.pageNumber = event.pageIndex;
     this.pageLimit = event.pageSize;
+    this.getProducts();
   }
 
 }

@@ -16,9 +16,10 @@ export class ProductService {
     return storageData.userData.token;
   }
 
-  getAllProducts() {
-    return this.http.get(
-      productUrls.getAllProducts
+  getAllProducts(payload) {
+    return this.http.put(
+      productUrls.getAllProducts,
+      payload
     );
   }
 

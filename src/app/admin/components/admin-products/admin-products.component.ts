@@ -33,7 +33,7 @@ export class AdminProductsComponent implements OnInit {
   }
 
   getProducts() {
-    this.subscription = this.productService.getAllProducts().subscribe((data: any) => {
+    this.subscription = this.productService.getAllProducts({}).subscribe((data: any) => {
       this.products = data.products;
     });
   }
