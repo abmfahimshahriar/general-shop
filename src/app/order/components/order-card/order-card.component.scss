@@ -4,11 +4,13 @@
         .mat-card {
             width: 250px;
             height: 250px;
+            margin: 16px;
+            overflow-y: auto;
         }
     }
 }
 
-.orderlist {
-    height: 100px;
-    overflow-y: auto;
-}
+// .orderlist {
+//     height: 100px;
+//     overflow-y: auto;
+// }
