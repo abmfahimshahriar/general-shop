@@ -8,7 +8,7 @@
             <mat-chip color="accent" selected>
                 Price: {{product.price}}
             </mat-chip>
-          </mat-chip-list>
+        </mat-chip-list>
         <mat-accordion>
             <mat-expansion-panel hideToggle>
                 <mat-expansion-panel-header>
@@ -25,14 +25,14 @@
         </mat-accordion>
     </mat-card-content>
     <mat-card-actions>
-        <div *ngIf="emptyCart; else cartSection" fxLayout="row" fxLayoutAlign="center center"> 
+        <div *ngIf="emptyCart; else cartSection" fxLayout="row" fxLayoutAlign="center center">
             <button mat-raised-button color="primary" (click)="onCart(product._id,'add')">
                 <mat-icon>add_shopping_cart</mat-icon>
                 Add to cart
             </button>
         </div>
         <ng-template #cartSection>
-            <div fxLayout="row" fxLayoutAlign="space-between center" >
+            <div fxLayout="row" fxLayoutAlign="space-between center">
                 <button mat-raised-button color="primary" (click)="onCart(product._id,'remove')">
                     <mat-icon>remove</mat-icon>
                 </button>

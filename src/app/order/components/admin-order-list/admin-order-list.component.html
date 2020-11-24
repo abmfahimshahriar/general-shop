@@ -1,1 +1,22 @@
-<p>admin-order-list works!</p>
+<mat-card>
+    <div fxLayout="column">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Search Order</mat-label>
+                    <input matInput placeholder="Search">
+                    <mat-icon matPrefix>search</mat-icon>
+                </mat-form-field>
+            </div>
+            
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutGap="16px">
+            <div *ngFor="let item of orders">
+                <app-order-card [orderDetails]="item"></app-order-card>
+            </div>
+            
+        </div>
+        
+    </div>
+</mat-card>

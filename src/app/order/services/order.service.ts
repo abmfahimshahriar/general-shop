@@ -11,9 +11,21 @@ export class OrderService {
     private http: HttpClient
   ) { }
 
+  getToken() {
+    const storageData = JSON.parse(localStorage.getItem('userData'));
+    return storageData.userData.token;
+  }
+
   getAllOrders() {
+    const token = this.getToken();
+
     return this.http.get(
-      productUrls.getOrders
+      productUrls.getOrders,
+      {
+        headers : {
+          Authorization: 'Bearer ' + token
+        }
+      }
     );
   }
 }

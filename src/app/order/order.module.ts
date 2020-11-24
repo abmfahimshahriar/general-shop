@@ -8,10 +8,11 @@ import { AuthGuardService as AuthGuard } from '../core/services/auth-guard.servi
 import { CoreModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { SnackBarComponent } from '../shared/components/snack-bar/snack-bar.component';
+import { OrderCardComponent } from './components/order-card/order-card.component';
 
 
 @NgModule({
-  declarations: [AdminOrderListComponent, MyOrdersComponent],
+  declarations: [AdminOrderListComponent, MyOrdersComponent, OrderCardComponent],
   imports: [
     CommonModule,
     SharedModule,
