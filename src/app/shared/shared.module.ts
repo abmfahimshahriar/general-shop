@@ -20,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatDividerModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
+    MatBadgeModule,
   ],
   exports: [
     TestComponent,
@@ -68,6 +70,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatDividerModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
+    MatBadgeModule,
   ]
 })
 export class SharedModule { }

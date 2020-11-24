@@ -6,9 +6,10 @@ import { SideNavService } from '../../services/side-nav.service';
 import { AuthModalComponent } from '../auth-modal/auth-modal.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AdminAuthGuardService } from '../../../admin/services/admin-auth-guard.service';
-import { map } from 'rxjs/internal/operators/map';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { Router } from '@angular/router';
+import { NgRedux } from '@angular-redux/store';
+import { IAppState } from '../../../store';
 
 @Component({
   selector: 'app-tool-bar',
@@ -18,6 +19,8 @@ import { Router } from '@angular/router';
 export class ToolBarComponent implements OnInit {
   @Output() themeMode = new EventEmitter();
   error = null;
+  cart;
+  cartTotalItems = 0;
   isLoggedIn = false;
   isAdmin = false;
   subscription: Subscription;
@@ -26,9 +29,14 @@ export class ToolBarComponent implements OnInit {
     private authService: AuthenticationService,
     private router: Router,
     private dialog: MatDialog,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private ngRedux: NgRedux<IAppState>,
   ) {
-
+    this.ngRedux.subscribe(() => {
+      this.cart = this.ngRedux.getState().cart;
+      const total = this.cart.map(item => item.count);
+      this.cartTotalItems = total.reduce((a, b) => a + b, 0);
+    });
   }
 
   ngOnInit(): void {
