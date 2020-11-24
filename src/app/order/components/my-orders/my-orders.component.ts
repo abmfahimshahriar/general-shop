@@ -11,7 +11,7 @@ export class MyOrdersComponent implements OnInit {
 
   myOrders;
   subscription: Subscription;
-
+  displayedColumns: string[] = ['products', 'total', 'status'];
   constructor(
     private orderService: OrderService
   ) { }
