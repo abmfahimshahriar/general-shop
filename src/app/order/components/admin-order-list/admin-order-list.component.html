@@ -13,7 +13,7 @@
 
         <div fxLayout="row wrap" fxLayoutGap="16px">
             <div *ngFor="let item of orders">
-                <app-order-card [orderDetails]="item"></app-order-card>
+                <app-order-card [orderDetails]="item" (changeStatus)="changeOrderStatus($event)"></app-order-card>
             </div>
             
         </div>

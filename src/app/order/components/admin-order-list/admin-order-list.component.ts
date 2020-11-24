@@ -34,4 +34,8 @@ export class AdminOrderListComponent implements OnInit {
     });
   }
 
+  changeOrderStatus(orderId) {
+    
+  }
+
 }

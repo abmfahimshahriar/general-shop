@@ -15,14 +15,22 @@
             </ul>
         </div>
         <div>
+            <b>Order Total:</b> {{orderDetails.total}}
+        </div>
+        <div>
             <mat-chip-list>
                 <mat-chip color="accent" selected>
                     <b>Status:</b> {{orderDetails.status}}
                 </mat-chip>
             </mat-chip-list>
         </div>
-        <div>
-            <b>Change Status:</b>
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <button mat-icon-button (click)="chageOrderStatus(orderDetails._id)">
+                <mat-icon>autorenew</mat-icon>
+            </button>
+            <div>
+                <b>Change Status</b>
+            </div>
         </div>
     </div>
 </mat-card>
