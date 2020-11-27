@@ -2,8 +2,9 @@ import { UPDATED_CART } from './../../../actions';
 import { IAppState } from './../../../store';
 import { ProductService } from './../../services/product.service';
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
-import { Subscription} from 'rxjs';
-import {NgRedux} from '@angular-redux/store'; 
+import { Subscription } from 'rxjs';
+import { NgRedux } from '@angular-redux/store';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -15,13 +16,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   cart: any[] = [];
   subscription: Subscription;
   searchKeySubscription;
-  reduxSubscription:Subscription;
+  reduxSubscription: Subscription;
   pageLimit = 5;
   pageNumber = 0;
   searchKey;
+  baseImage;
   loading = true;
   noItem = false;
-  @ViewChild("query") query:ElementRef; 
+  @ViewChild("query") query: ElementRef;
   paginatorProperties = {
     length: 100,
     pageSize: 5,
@@ -31,6 +33,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     private productService: ProductService,
     private ngRedux: NgRedux<IAppState>,
+    private sanitizer: DomSanitizer,
   ) {
     this.cart = this.ngRedux.getState().cart;
   }
@@ -43,15 +46,30 @@ export class HomeComponent implements OnInit, OnDestroy {
     const payload = {
       pageNumber: this.pageNumber,
       pageLimit: this.pageLimit,
-      searchKey: this.searchKey? this.searchKey : null
+      searchKey: this.searchKey ? this.searchKey : null
     }
     this.subscription = this.productService.getAllProducts(payload).subscribe((data: any) => {
       this.products = data.products;
       this.paginatorProperties.length = data.totalItems;
+      // this.baseImage = data.cloudImage.data.data;
+      // let objectURL = 'data:image/jpeg;base64,' + data.cloudImage.data.data;
+      // this.baseImage = this.sanitizer.bypassSecurityTrustUrl(objectURL);
       this.loading = false;
       this.noItem = data.totalItems > 0 ? false : true;
     });
   }
+  // _arrayBufferToBase64( buffer ) {
+  //   var binary = '';
+  //   var bytes = new Uint8Array( buffer );
+  //   var len = bytes.byteLength;
+  //   for (var i = 0; i < len; i++) {
+  //      binary += String.fromCharCode( bytes[ i ] );
+  //   }
+  //   return window.btoa( binary );
+  // }
+  // sanitize( url:string ) {
+  //   return this.sanitizer.bypassSecurityTrustUrl(url);
+  // }
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
@@ -93,7 +111,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     // localStorage.setItem('cart', JSON.stringify(this.cart));
 
     // redux code
-    this.ngRedux.dispatch({type: UPDATED_CART,body:this.cart});
+    this.ngRedux.dispatch({ type: UPDATED_CART, body: this.cart });
   }
 
   pageEvent(event) {
@@ -114,7 +132,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.searchKey = searchKey;
     this.loading = true;
     this.getProducts();
-    
+
   }
 
 }

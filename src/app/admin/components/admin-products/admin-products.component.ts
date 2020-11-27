@@ -17,6 +17,16 @@ export class AdminProductsComponent implements OnInit {
   Search: FormControl;
   subscription: Subscription;
   displayedColumns: string[] = ['title', 'price', 'company', 'action'];
+  pageLimit = 5;
+  pageNumber = 0;
+  searchKey;
+  loading = true;
+  noItem = false;
+  paginatorProperties = {
+    length: 100,
+    pageSize: 5,
+    pageSizeOptions: [5, 10, 25, 100],
+  }
   constructor(
     private productService: ProductService,
     private router: Router,
@@ -32,9 +42,17 @@ export class AdminProductsComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
-  getProducts() {
-    this.subscription = this.productService.getAllProducts({}).subscribe((data: any) => {
+  async getProducts() {
+    const payload = {
+      pageNumber: this.pageNumber,
+      pageLimit: this.pageLimit,
+      searchKey: this.searchKey ? this.searchKey : null
+    }
+    this.subscription = this.productService.getAllProducts(payload).subscribe((data: any) => {
       this.products = data.products;
+      this.paginatorProperties.length = data.totalItems;
+      this.loading = false;
+      this.noItem = data.totalItems > 0 ? false : true;
     });
   }
 
@@ -72,6 +90,21 @@ export class AdminProductsComponent implements OnInit {
       },
 
     });
+  }
+
+
+  pageEvent(event) {
+    this.pageNumber = event.pageIndex;
+    this.pageLimit = event.pageSize;
+    this.paginatorProperties.pageSize = event.pageSize;
+    this.loading = true;
+    this.getProducts();
+  }
+
+  filter(searchKey) {
+    this.searchKey = searchKey;
+    this.loading = true;
+    this.getProducts();
   }
 
 }

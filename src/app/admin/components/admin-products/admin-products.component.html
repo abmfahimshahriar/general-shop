@@ -4,7 +4,7 @@
             <div>
                 <mat-form-field appearance="outline">
                     <mat-label>Search Products</mat-label>
-                    <input matInput placeholder="Search">
+                    <input #query (input)="filter($event.target.value)" matInput placeholder="Search">
                     <mat-icon matPrefix>search</mat-icon>
                 </mat-form-field>
             </div>
@@ -15,7 +15,7 @@
             </div>
         </div>
 
-        <div>
+        <div *ngIf="!loading && !noItem">
             <table mat-table [dataSource]="products" class="mat-elevation-z8">
 
                 <ng-container matColumnDef="title">
@@ -53,6 +53,21 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <div *ngIf="loading">
+                <mat-spinner></mat-spinner>
+            </div>
+            <div *ngIf="noItem">
+                No products matched your search!
+            </div>
+        </div>
+
+        <div>
+            <mat-paginator [length]="paginatorProperties.length" [pageSize]="paginatorProperties.pageSize"
+                [pageSizeOptions]="paginatorProperties.pageSizeOptions" [showFirstLastButtons]="'true'"
+                (page)="pageEvent($event)">
+            </mat-paginator>
         </div>
     </div>
 </mat-card>
