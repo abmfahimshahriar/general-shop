@@ -15,6 +15,17 @@ export class AdminOrderListComponent implements OnInit {
   orders;
   subscription: Subscription;
   Search: FormControl;
+
+  pageLimit = 5;
+  pageNumber = 0;
+  searchKey;
+  loading = true;
+  noItem = false;
+  paginatorProperties = {
+    length: 100,
+    pageSize: 5,
+    pageSizeOptions: [5, 10, 25, 100],
+  }
   constructor(
     private orderService: OrderService,
     private _snackBar: MatSnackBar,
@@ -27,10 +38,18 @@ export class AdminOrderListComponent implements OnInit {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
-  getOrders() {
-    this.subscription = this.orderService.getAllOrders().subscribe((data: any) => {
+  
+  async getOrders() {
+    const payload = {
+      pageNumber: this.pageNumber,
+      pageLimit: this.pageLimit,
+      searchKey: this.searchKey ? this.searchKey : null
+    }
+    this.subscription = this.orderService.getAllOrders(payload).subscribe((data: any) => {
       this.orders = data.orders;
+      this.paginatorProperties.length = data.totalItems;
+      this.loading = false;
+      this.noItem = data.totalItems > 0 ? false : true;
     });
   }
 
@@ -58,6 +77,20 @@ export class AdminOrderListComponent implements OnInit {
       },
 
     });
+  }
+
+  pageEvent(event) {
+    this.pageNumber = event.pageIndex;
+    this.pageLimit = event.pageSize;
+    this.paginatorProperties.pageSize = event.pageSize;
+    this.loading = true;
+    this.getOrders();
+  }
+
+  filter(searchKey) {
+    this.searchKey = searchKey;
+    this.loading = true;
+    this.getOrders();
   }
 
 }

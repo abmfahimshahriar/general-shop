@@ -16,11 +16,12 @@ export class OrderService {
     return storageData.userData.token;
   }
 
-  getAllOrders() {
+  getAllOrders(payload) {
     const token = this.getToken();
 
-    return this.http.get(
+    return this.http.put(
       productUrls.getOrders,
+      payload,
       {
         headers : {
           Authorization: 'Bearer ' + token

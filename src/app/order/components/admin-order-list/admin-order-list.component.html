@@ -1,22 +1,37 @@
 <mat-card>
     <div fxLayout="column">
-        <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="row" fxLayoutAlign="center center">
             <div>
                 <mat-form-field appearance="outline">
-                    <mat-label>Search Order</mat-label>
-                    <input matInput placeholder="Search">
+                    <mat-label>Search by customer name</mat-label>
+                    <input #query (input)="filter($event.target.value)" matInput placeholder="Search">
                     <mat-icon matPrefix>search</mat-icon>
                 </mat-form-field>
             </div>
-            
         </div>
 
-        <div fxLayout="column" fxLayoutAlign="center center">
+        <div *ngIf="!loading && !noItem" fxLayout="column" fxLayoutAlign="center center">
             <div fxLayout="row wrap" fxLayoutAlign="center center">
                 <div *ngFor="let item of orders">
                     <app-order-card [orderDetails]="item" (changeStatus)="changeOrderStatus($event)" (deleteOrder)="onDeleteOrder($event)"></app-order-card>
                 </div>
             </div>
+        </div>
+
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <div *ngIf="loading">
+                <mat-spinner></mat-spinner>
+            </div>
+            <div *ngIf="noItem">
+                No products matched your search!
+            </div>
+        </div>
+
+        <div>
+            <mat-paginator [length]="paginatorProperties.length" [pageSize]="paginatorProperties.pageSize"
+                [pageSizeOptions]="paginatorProperties.pageSizeOptions" [showFirstLastButtons]="'true'"
+                (page)="pageEvent($event)">
+            </mat-paginator>
         </div>
         
     </div>
