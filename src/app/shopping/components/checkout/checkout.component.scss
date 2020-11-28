@@ -25,3 +25,11 @@
 .form-wrapper {
     padding: 16px 0px;
 }
+
+::ng-deep {
+    app-checkout {
+        .mat-card {
+            height: 100vh !important;
+        }
+    }
+}
