@@ -17,6 +17,24 @@ $small: 600px;
   }
 
   .sidenav-content {
-    padding: 16px;
+    padding: 16px 0px 16px 0px;
+  }
+
+  .sidenav-item {
+    width: 30vw;
+    height: 48px;
+    margin-bottom: 8px;
+    padding-left: 16px;
+    border-top: 2px solid rgb(58, 50, 50);
+    border-bottom: 2px solid rgb(58, 50, 50);
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    // justify-content: center;
+    cursor: pointer;
+    @media screen and (max-width: $small) {
+      width: 60vw;
+      height: 36px;
+    }
   }
   

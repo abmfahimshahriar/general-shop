@@ -10,11 +10,13 @@ import { AdminProductsComponent } from './components/admin-products/admin-produc
 import { AdminAuthGuardService as AdminAuthGuard } from './services/admin-auth-guard.service';
 import { AuthGuardService as AuthGuard } from '../core/services/auth-guard.service';
 import { SingleProductDetailsResolver } from './resolvers/get-single-product-details-resolver';
+import { AdminSettingsComponent } from './components/admin-settings/admin-settings.component';
 
 @NgModule({
   declarations: [
     AdminProductsComponent,
-    AddProductComponent
+    AddProductComponent,
+    AdminSettingsComponent,
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,12 @@ import { SingleProductDetailsResolver } from './resolvers/get-single-product-det
           productDetails: SingleProductDetailsResolver
         },
         canActivate: [AuthGuard,AdminAuthGuard]
-      }
+      },
+      {
+        path: 'admin/settings',
+        component: AdminSettingsComponent,
+        canActivate: [AuthGuard,AdminAuthGuard]
+      },
     ])
   ],
   providers: [

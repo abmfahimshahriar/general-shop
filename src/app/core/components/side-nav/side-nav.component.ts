@@ -16,8 +16,13 @@ export class SideNavComponent implements OnInit {
 
   ngOnInit() { 
   }
+
   ngAfterViewInit(): void {
     this.sideNavService.setSidenav(this.sideNav);
+  }
+
+  onClickSideNavItem() {
+    this.sideNavService.close();
   }
    
 
