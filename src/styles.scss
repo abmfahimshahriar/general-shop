@@ -8,6 +8,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 @import 'src/app/app.component.theme.scss';
 
+$small: 600px;
+
+.content-wrapper {
+    padding-top: 64px;
+
+    @media screen and (max-width: $small) {
+        padding-top: 56px;
+    }
+}
 .w-100-p{
     width: 100%;
 }

@@ -11,3 +11,12 @@
 .cursor {
   cursor: pointer;
 }
+
+::ng-deep {
+  app-tool-bar {
+      .mat-toolbar {
+          position: fixed !important;
+          margin-bottom: 32px;
+      }
+  }
+}
