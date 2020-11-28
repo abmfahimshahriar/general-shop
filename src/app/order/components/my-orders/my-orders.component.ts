@@ -12,6 +12,8 @@ export class MyOrdersComponent implements OnInit {
   myOrders;
   subscription: Subscription;
   displayedColumns: string[] = ['products', 'total', 'status'];
+  loading = true;
+  noItem = false;
   constructor(
     private orderService: OrderService
   ) { }
@@ -25,6 +27,8 @@ export class MyOrdersComponent implements OnInit {
     const userId = storageData.userData.userId;
     this.subscription = this.orderService.getMyOrders(userId).subscribe((data: any) => {
       this.myOrders = data.orders;
+      this.loading = false;
+      this.noItem = data.totalItems > 0 ? false : true;
     });
   }
 }

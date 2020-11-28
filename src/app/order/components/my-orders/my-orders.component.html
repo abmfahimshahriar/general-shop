@@ -1,17 +1,6 @@
 <mat-card>
     <div fxLayout="column">
-        <div fxLayout="row" fxLayoutAlign="space-between center">
-            <div>
-                <mat-form-field appearance="outline">
-                    <mat-label>Search Products</mat-label>
-                    <input matInput placeholder="Search">
-                    <mat-icon matPrefix>search</mat-icon>
-                </mat-form-field>
-            </div>
-            
-        </div>
-
-        <div *ngIf="myOrders; else noItemsTemplate">
+        <div *ngIf="!loading && !noItem">
             <table mat-table [dataSource]="myOrders" class="mat-elevation-z8">
 
                 <ng-container matColumnDef="products">
@@ -39,10 +28,13 @@
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
         </div>
-        <ng-template #noItemsTemplate>
-            <div class="no-item">
-                You have not ordered any items yet.
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <div *ngIf="loading">
+                <mat-spinner></mat-spinner>
             </div>
-        </ng-template>
+            <div *ngIf="noItem">
+                You have not ordered any products yet!
+            </div>
+        </div>
     </div>
 </mat-card>
