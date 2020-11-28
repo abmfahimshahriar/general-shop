@@ -1,5 +1,6 @@
-<mat-card>
-    <div fxLayout="column" fxLayoutGap="16px">
+<div>
+    
+    <div *ngIf="cart.length > 0; else noItems" fxLayout="column" fxLayoutGap="16px">
         <div class="title">
             Your Order Summary:
         </div>
@@ -12,4 +13,9 @@
             </button>
         </div>
     </div>
-</mat-card>
+    <ng-template #noItems>
+        <div fxLayout="row" fxLayoutAlign="center center" class="no-item">
+            There is no items currently in your cart.
+        </div>
+    </ng-template>
+</div>
