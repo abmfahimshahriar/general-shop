@@ -23,6 +23,13 @@ export class ProductService {
     );
   }
 
+  getFeaturedProducts(payload) {
+    return this.http.put(
+      productUrls.getFeaturedProducts,
+      payload
+    );
+  }
+
   getSingleProduct(prodId) {
     return this.http.get(
       productUrls.getSingleProduct + prodId
