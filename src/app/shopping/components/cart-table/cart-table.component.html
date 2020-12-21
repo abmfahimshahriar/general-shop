@@ -3,7 +3,7 @@
         <ng-container matColumnDef="image">
             <th mat-header-cell *matHeaderCellDef></th>
             <td mat-cell *matCellDef="let element">
-                <img class="product-avatar" src={{element.image}} alt="product image">
+                <img class="product-avatar" src={{element.imageArray[0]}} alt="product image">
             </td>
             <td mat-footer-cell *matFooterCellDef> Total </td>
         </ng-container>
