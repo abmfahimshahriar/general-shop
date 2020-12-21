@@ -17,7 +17,7 @@ export class OverviewComponent implements OnInit {
 
   featuredProducts = [];
   productLimit = 3;
-
+  loading = true;
   constructor(private productService: ProductService) {}
 
   async ngOnInit() {
@@ -34,12 +34,12 @@ export class OverviewComponent implements OnInit {
       .toPromise()
       .then((data: any) => {
         this.featuredProducts = data.products;
+        this.loading = false;
       })
       .catch((err) => console.error(err));
-    console.log(this.featuredProducts);
   }
 
   cartManager(cartItem) {
-    this.productService.cartManagerService(cartItem,this.featuredProducts);
+    this.productService.cartManagerService(cartItem, this.featuredProducts);
   }
 }

@@ -1,7 +1,13 @@
 import { UPDATED_CART } from '../../../store/actions';
 import { IAppState } from '../../../store/store';
 import { ProductService } from './../../services/product.service';
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { NgRedux } from '@angular-redux/store';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -9,7 +15,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
   products: any[];
@@ -23,17 +29,17 @@ export class HomeComponent implements OnInit, OnDestroy {
   baseImage;
   loading = true;
   noItem = false;
-  @ViewChild("query") query: ElementRef;
+  @ViewChild('query') query: ElementRef;
   paginatorProperties = {
     length: 100,
     pageSize: 5,
     pageSizeOptions: [5, 10, 25, 100],
-  }
+  };
 
   constructor(
     private productService: ProductService,
     private ngRedux: NgRedux<IAppState>,
-    private sanitizer: DomSanitizer,
+    private sanitizer: DomSanitizer
   ) {
     this.cart = this.ngRedux.getState().cart;
   }
@@ -46,17 +52,19 @@ export class HomeComponent implements OnInit, OnDestroy {
     const payload = {
       pageNumber: this.pageNumber,
       pageLimit: this.pageLimit,
-      searchKey: this.searchKey ? this.searchKey : null
-    }
-    this.subscription = this.productService.getAllProducts(payload).subscribe((data: any) => {
-      this.products = data.products;
-      this.paginatorProperties.length = data.totalItems;
-      // this.baseImage = data.cloudImage.data.data;
-      // let objectURL = 'data:image/jpeg;base64,' + data.cloudImage.data.data;
-      // this.baseImage = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-      this.loading = false;
-      this.noItem = data.totalItems > 0 ? false : true;
-    });
+      searchKey: this.searchKey ? this.searchKey : null,
+    };
+    this.subscription = this.productService
+      .getAllProducts(payload)
+      .subscribe((data: any) => {
+        this.products = data.products;
+        this.paginatorProperties.length = data.totalItems;
+        // this.baseImage = data.cloudImage.data.data;
+        // let objectURL = 'data:image/jpeg;base64,' + data.cloudImage.data.data;
+        // this.baseImage = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+        this.loading = false;
+        this.noItem = data.totalItems > 0 ? false : true;
+      });
   }
   // _arrayBufferToBase64( buffer ) {
   //   var binary = '';
@@ -74,47 +82,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
   cartManager(cartItem) {
-    this.productService.cartManagerService(cartItem,this.products);
+    this.productService.cartManagerService(cartItem, this.products);
   }
-  // cartManager(cartItem) {
-  //   this.cart = this.ngRedux.getState().cart;
-  //   let num = 1;
-  //   if (cartItem.type === 'remove') {
-  //     num = -1;
-  //   }
-  //   let tempCart = [...this.cart];
-  //   let tempItem: any = tempCart
-  //     .find(item => item._id === cartItem.prodId);
-
-  //   if (!tempItem) {
-  //     if (cartItem.type !== 'remove') {
-  //       tempItem = this.products
-  //         .find(item => item._id === cartItem.prodId);
-  //       const total = tempItem.price;
-  //       const item = {
-  //         ...tempItem,
-  //         total,
-  //         count: 1
-  //       }
-  //       tempCart = [...tempCart, item];
-  //     }
-  //   }
-  //   else {
-  //     tempItem.count = tempItem.count + num;
-  //     if (tempItem.count === 0) {
-  //       tempCart = tempCart.filter(item => item._id !== tempItem._id);
-  //     }
-  //     else {
-  //       tempItem.total = tempItem.price * tempItem.count;
-  //       tempItem.total = parseFloat(tempItem.total.toFixed(2));
-  //     }
-  //   }
-  //   this.cart = [...tempCart];
-  //   // localStorage.setItem('cart', JSON.stringify(this.cart));
-
-  //   // redux code
-  //   this.ngRedux.dispatch({ type: UPDATED_CART, body: this.cart });
-  // }
 
   pageEvent(event) {
     this.pageNumber = event.pageIndex;
@@ -134,7 +103,5 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.searchKey = searchKey;
     this.loading = true;
     this.getProducts();
-
   }
-
 }
