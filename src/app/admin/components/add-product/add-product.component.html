@@ -45,18 +45,42 @@
                             </mat-error>
                         </mat-form-field>
                     </div>
-                    <div>
+                    <!-- <div>
                         <input placeholder="image" formControlName="image" type="file" #imageInput (change)="processFile($event)" required>
+                    </div> -->
+                    <div>
+                        <mat-form-field appearance="outline">
+                            <mat-label>First image</mat-label>
+                            <input matInput placeholder="First image" formControlName="firstImage" required>
+                            <mat-error *ngIf="addProductForm.get('firstImage').hasError('required')">{{'Company required'}}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Second image</mat-label>
+                            <input matInput placeholder="Second image" formControlName="secondImage">
+                            <mat-error *ngIf="addProductForm.get('secondImage').hasError('required')">{{'Company required'}}
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Thrid image</mat-label>
+                            <input matInput placeholder="Thrid image" formControlName="thirdImage">
+                            <mat-error *ngIf="addProductForm.get('thirdImage').hasError('required')">{{'Company required'}}
+                            </mat-error>
+                        </mat-form-field>
                     </div>
                     <div fxLayout="row" fxLayoutGap="32px">
                         <div>
-                            <button mat-raised-button color="primary" (click)="onSubmit()">
-                                {{buttonLabel}}
+                            <button mat-raised-button color="warn" (click)="onCancel()">
+                                Cancel
                             </button>
                         </div>
                         <div>
-                            <button mat-raised-button color="warn" (click)="onCancel()">
-                                Cancel
+                            <button mat-raised-button [disabled]="!addProductForm.valid" color="primary" (click)="onSubmit()">
+                                {{buttonLabel}}
                             </button>
                         </div>
                     </div>

@@ -8,7 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
-  styleUrls: ['./add-product.component.scss']
+  styleUrls: ['./add-product.component.scss'],
 })
 export class AddProductComponent implements OnInit {
   addProductForm: FormGroup;
@@ -22,15 +22,16 @@ export class AddProductComponent implements OnInit {
     private productService: ProductService,
     private _snackBar: MatSnackBar,
     private router: Router,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) {
     this.initForm();
   }
 
   async ngOnInit() {
-    this.productDetails = await this.route.snapshot.data.productDetails?.product;
+    this.productDetails = await this.route.snapshot.data.productDetails
+      ?.product;
     this.prodId = await this.route.snapshot.queryParams.prodId;
-    if(this.prodId) {
+    if (this.prodId) {
       this.buttonLabel = 'Update';
     }
     this.initForm();
@@ -41,10 +42,13 @@ export class AddProductComponent implements OnInit {
       title: [this.productDetails?.title, Validators.required],
       company: [this.productDetails?.company, Validators.required],
       description: [this.productDetails?.description, Validators.required],
-      featured: [this.productDetails?.featured, Validators.required],
-      freeShipping: [this.productDetails?.freeShipping, Validators.required],
+      featured: [this.productDetails?.featured ? this.productDetails?.featured: false, Validators.required],
+      freeShipping: [this.productDetails?.freeShipping ? this.productDetails?.freeShipping: false, Validators.required],
       price: [this.productDetails?.price, Validators.required],
-      image: [null, Validators.required],
+      // image: [null, Validators.required],
+      firstImage: [null],
+      secondImage: [null],
+      thirdImage: [null],
     });
   }
 
@@ -57,31 +61,45 @@ export class AddProductComponent implements OnInit {
     formData.append('freeShipping', this.addProductForm.value.freeShipping);
     formData.append('price', this.addProductForm.value.price);
     formData.append('image', this.file);
+    const imageArray = [];
+    if (this.addProductForm.value.firstImage)
+      imageArray.push(this.addProductForm.value.firstImage);
+    if (this.addProductForm.value.secondImage)
+      imageArray.push(this.addProductForm.value.secondImage);
+    if (this.addProductForm.value.thirdImage)
+      imageArray.push(this.addProductForm.value.thirdImage);
+    const payload = {
+      ...this.addProductForm.value,
+      imageArray: imageArray,
+    };
 
     if (!this.prodId) {
-      await this.productService.addProduct(formData)
-        .subscribe(resultData => {
+      await this.productService.addProduct(payload).subscribe(
+        (resultData) => {
           this.openSnackBar(resultData);
-        }, error => {
+        },
+        (error) => {
           this.error = error.error;
           console.log(this.error);
           this.openSnackBar(this.error);
-        });
-    }
-    else {
-      await this.productService.updateProduct(formData,this.prodId)
-        .subscribe(resultData => {
+        }
+      );
+    } else {
+      await this.productService.updateProduct(payload, this.prodId).subscribe(
+        (resultData) => {
           this.openSnackBar(resultData);
-        }, error => {
+        },
+        (error) => {
           this.error = error.error;
           console.log(this.error);
           this.openSnackBar(this.error);
-        });
+        }
+      );
     }
 
     this.router.navigate(['admin', 'products']);
   }
-  
+
   onCancel() {
     this.router.navigate(['admin', 'products']);
   }
@@ -94,11 +112,8 @@ export class AddProductComponent implements OnInit {
     this._snackBar.openFromComponent(SnackBarComponent, {
       duration: 3000,
       data: {
-        message: data.message
+        message: data.message,
       },
-
     });
   }
-
-
 }
