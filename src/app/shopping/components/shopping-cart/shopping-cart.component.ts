@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
-import { IAppState } from '../../../store';
+import { IAppState } from '../../../store/store';
 
 @Component({
   selector: 'app-shopping-cart',

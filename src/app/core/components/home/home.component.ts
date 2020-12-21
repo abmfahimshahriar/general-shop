@@ -1,5 +1,5 @@
-import { UPDATED_CART } from './../../../actions';
-import { IAppState } from './../../../store';
+import { UPDATED_CART } from '../../../store/actions';
+import { IAppState } from '../../../store/store';
 import { ProductService } from './../../services/product.service';
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { Subscription } from 'rxjs';

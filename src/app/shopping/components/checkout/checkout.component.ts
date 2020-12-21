@@ -4,9 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SnackBarComponent } from '../../../shared/components/snack-bar/snack-bar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { IAppState } from '../../../store';
+import { IAppState } from '../../../store/store';
 import { NgRedux } from '@angular-redux/store';
-import { UPDATED_CART } from '../../../actions';
+import { UPDATED_CART } from '../../../store/actions';
 
 @Component({
   selector: 'app-checkout',

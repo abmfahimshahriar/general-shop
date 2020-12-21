@@ -15,7 +15,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {NgRedux,NgReduxModule} from '@angular-redux/store';
-import {IAppState,rootReducer,INITIAL_STATE} from './store'
+import {IAppState,rootReducer,INITIAL_STATE} from './store/store'
 
 @NgModule({
   declarations: [

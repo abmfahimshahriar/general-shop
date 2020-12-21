@@ -8,7 +8,7 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { NgRedux, select } from '@angular-redux/store';
-import { IAppState } from '../../../store';
+import { IAppState } from '../../../store/store';
 
 @Component({
   selector: 'app-product-card',

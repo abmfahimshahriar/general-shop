@@ -9,7 +9,7 @@ import { AdminAuthGuardService } from '../../../admin/services/admin-auth-guard.
 import { Subscription } from 'rxjs/internal/Subscription';
 import { Router } from '@angular/router';
 import { NgRedux } from '@angular-redux/store';
-import { IAppState } from '../../../store';
+import { IAppState } from '../../../store/store';
 
 @Component({
   selector: 'app-tool-bar',

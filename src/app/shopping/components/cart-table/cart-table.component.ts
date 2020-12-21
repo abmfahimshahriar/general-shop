@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
-import { IAppState } from '../../../store';
-import { UPDATED_CART } from '../../../actions';
+import { IAppState } from '../../../store/store';
+import { UPDATED_CART } from '../../../store/actions';
 
 @Component({
   selector: 'app-cart-table',
