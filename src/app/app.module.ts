@@ -28,11 +28,11 @@ import {IAppState,rootReducer,INITIAL_STATE} from './store/store'
     RouterModule.forRoot([
       {
         path: '',
-        component: HomeComponent
+        component: OverviewComponent
       },
       {
-        path: 'test', 
-        component: OverviewComponent 
+        path: 'products', 
+        component: HomeComponent 
       },
       // {
       //   path: 'admin',

@@ -1,6 +1,7 @@
 .overview {
     padding: 16px;
-    height: 100vh;
+    height: 100%;
+    background-color: #f8efc6;
 }
 
 .banner {
@@ -8,7 +9,6 @@
 }
 
 .product-card {
-    //flex: 1 1 auto;
     max-width: 300px;
     padding: 16px;
 }
@@ -31,4 +31,13 @@
 .products-btn {
     text-align: center;
     margin: 16px;
+}
+
+::ng-deep {
+    app-overview {
+        .mat-card {
+            height: 100% !important;
+            padding: 0 !important;
+        }
+    }
 }
