@@ -49,7 +49,6 @@ export class ProductCardComponent implements OnInit, OnDestroy {
       };
       this.imageObject.push(tempImageObject);
     });
-    console.log(this.imageObject);
   }
   ngOnDestroy() {
     // this.reduxSubscription.unsubscribe();

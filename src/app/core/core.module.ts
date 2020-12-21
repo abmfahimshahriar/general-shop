@@ -27,6 +27,8 @@ import { HomeComponent } from './components/home/home.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatMenuModule} from '@angular/material/menu';
 import { CartMenuComponent } from './components/cart-menu/cart-menu.component';
+import { OverviewComponent } from './components/overview/overview.component';
+import { NgImageSliderModule } from 'ng-image-slider';
 
 
 @NgModule({
@@ -35,7 +37,8 @@ import { CartMenuComponent } from './components/cart-menu/cart-menu.component';
     SideNavComponent,
     AuthModalComponent,
     HomeComponent,
-    CartMenuComponent
+    CartMenuComponent,
+    OverviewComponent
   ],
   imports: [
     CommonModule,
@@ -55,11 +58,13 @@ import { CartMenuComponent } from './components/cart-menu/cart-menu.component';
     MatCardModule,
     HttpClientModule,
     MatMenuModule,
-    RouterModule
+    RouterModule,
+    NgImageSliderModule
   ],
   exports: [
     ToolBarComponent,
-    SideNavComponent
+    SideNavComponent,
+    OverviewComponent
   ],
   providers: [
     SideNavService,

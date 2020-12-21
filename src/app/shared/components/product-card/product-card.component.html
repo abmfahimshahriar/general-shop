@@ -1,57 +1,75 @@
 <mat-card>
-    <mat-card-header>
-        <mat-card-title>{{product.title}}</mat-card-title>
-    </mat-card-header>
-    <!-- <img mat-card-image src={{product.imageArray[0]}}> -->
-    
-    <mat-card-content>
-        <div style="width: 100%; height: 100%; text-align:center;margin:0; padding:0;">
-            <ng-image-slider #nav
-              [images]="imageObject"
-              [infinite]="true"
-              [autoSlide]="1"
-              [imageSize]="{width: '100%', height: 250}"
-              slideImage="1"></ng-image-slider>
-          </div>
-        <mat-chip-list>
-            <mat-chip color="accent" selected>
-                Price: {{product.price}}
-            </mat-chip>
-        </mat-chip-list>
-        <mat-accordion>
-            <mat-expansion-panel hideToggle>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Details
-                    </mat-panel-title>
-                    <mat-panel-description>
-                        Click to see details
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
-                <p>Company: {{product.company}}</p>
-                <p>Description: {{product.description}}</p>
-            </mat-expansion-panel>
-        </mat-accordion>
-    </mat-card-content>
-    <mat-card-actions>
-        <div *ngIf="emptyCart; else cartSection" fxLayout="row" fxLayoutAlign="center center">
-            <button mat-raised-button color="primary" (click)="onCart(product._id,'add')">
-                <mat-icon>add_shopping_cart</mat-icon>
-                Add to cart
-            </button>
-        </div>
-        <ng-template #cartSection>
-            <div fxLayout="row" fxLayoutAlign="space-between center">
-                <button mat-raised-button color="primary" (click)="onCart(product._id,'remove')">
-                    <mat-icon>remove</mat-icon>
-                </button>
-                <div>
-                    {{count}} in cart
-                </div>
-                <button mat-raised-button color="primary" (click)="onCart(product._id,'add')">
-                    <mat-icon>add</mat-icon>
-                </button>
-            </div>
-        </ng-template>
-    </mat-card-actions>
+  <mat-card-header>
+    <mat-card-title>{{ product.title }}</mat-card-title>
+  </mat-card-header>
+  <!-- <img mat-card-image src={{product.imageArray[0]}}> -->
+
+  <mat-card-content>
+    <div
+      style="
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+      "
+    >
+      <ng-image-slider
+        #nav
+        [images]="imageObject"
+        [infinite]="true"
+        [autoSlide]="1"
+        [imageSize]="{ width: '100%', height: 250 }"
+        slideImage="1"
+      ></ng-image-slider>
+    </div>
+    <mat-chip-list>
+      <mat-chip color="accent" selected> Price: {{ product.price }} </mat-chip>
+    </mat-chip-list>
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Details </mat-panel-title>
+          <mat-panel-description> Click to see details </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>Company: {{ product.company }}</p>
+        <p>Description: {{ product.description }}</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-card-content>
+  <mat-card-actions>
+    <div
+      *ngIf="emptyCart; else cartSection"
+      fxLayout="row"
+      fxLayoutAlign="center center"
+    >
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onCart(product._id, 'add')"
+      >
+        <mat-icon>add_shopping_cart</mat-icon>
+        Add to cart
+      </button>
+    </div>
+    <ng-template #cartSection>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="onCart(product._id, 'remove')"
+        >
+          <mat-icon>remove</mat-icon>
+        </button>
+        <div>{{ count }} in cart</div>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="onCart(product._id, 'add')"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </ng-template>
+  </mat-card-actions>
 </mat-card>

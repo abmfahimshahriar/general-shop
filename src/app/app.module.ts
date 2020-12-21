@@ -1,3 +1,4 @@
+import { OverviewComponent } from './core/components/overview/overview.component';
 import { OrderModule } from './order/order.module';
 import { ShoppingModule } from './shopping/shopping.module';
 import { HomeComponent } from './core/components/home/home.component';
@@ -11,7 +12,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { TestComponent } from './shared/components/test/test.component';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {NgRedux,NgReduxModule} from '@angular-redux/store';
@@ -32,7 +32,7 @@ import {IAppState,rootReducer,INITIAL_STATE} from './store'
       },
       {
         path: 'test', 
-        component: TestComponent 
+        component: OverviewComponent 
       },
       // {
       //   path: 'admin',
