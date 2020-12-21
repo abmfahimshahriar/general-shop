@@ -6,3 +6,9 @@
 .banner {
     width: 100%;
 }
+
+.product-card {
+    //flex: 1 1 auto;
+    max-width: 300px;
+    padding: 16px;
+}

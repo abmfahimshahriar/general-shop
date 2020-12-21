@@ -16,8 +16,7 @@ export class OverviewComponent implements OnInit {
   ];
 
   featuredProducts = [];
-  pageNumber = 0;
-  pageLimit = 5;
+  productLimit = 3;
 
   constructor(private productService: ProductService) {}
 
@@ -27,9 +26,7 @@ export class OverviewComponent implements OnInit {
 
   async getFeaturedProducts() {
     const payload = {
-      // pageNumber: this.pageNumber,
-      productLimit: this.pageLimit,
-      // searchKey: null,
+      productLimit: this.productLimit,
     };
     await this.productService
       .getFeaturedProducts(payload)
@@ -40,5 +37,9 @@ export class OverviewComponent implements OnInit {
       })
       .catch((err) => console.error(err));
     console.log(this.featuredProducts);
+  }
+
+  cartManager(cartItem) {
+    this.productService.cartManagerService(cartItem,this.featuredProducts);
   }
 }

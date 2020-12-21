@@ -9,7 +9,9 @@
       slideImage="1"
     ></ng-image-slider>
   </div>
-  <div class="featured-products">
-    
+  <div class="featured-products" fxLayout="row wrap" fxLayoutAlign="center center">
+    <div class="product-card" *ngFor="let product of featuredProducts">
+        <app-product-card [product]="product" (addToCart)="cartManager($event)"></app-product-card>
+    </div>
   </div>
 </div>
