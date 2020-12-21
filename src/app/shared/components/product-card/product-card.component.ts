@@ -1,13 +1,19 @@
 import { baseUrl } from './../../constants/backend.urls';
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  OnDestroy,
+} from '@angular/core';
 import { NgRedux, select } from '@angular-redux/store';
 import { IAppState } from '../../../store';
-
 
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.scss']
+  styleUrls: ['./product-card.component.scss'],
 })
 export class ProductCardComponent implements OnInit, OnDestroy {
   @Input() product;
@@ -17,10 +23,9 @@ export class ProductCardComponent implements OnInit, OnDestroy {
   count = 0;
   emptyCart = true;
   reduxSubscription;
+  imageObject: any = [];
 
-  constructor(
-    private ngRedux: NgRedux<IAppState>
-  ) {
+  constructor(private ngRedux: NgRedux<IAppState>) {
     this.cart = this.ngRedux.getState().cart;
   }
 
@@ -28,19 +33,31 @@ export class ProductCardComponent implements OnInit, OnDestroy {
     // this.reduxSubscription = this.ngRedux.subscribe(() => {
     //   const store = this.ngRedux.getState();
     //   this.cart = store.cart;
-      
+
     // });
     this.checkCart();
     this.product.image = this.baseUrl + this.product.image;
+    this.setImageObjectData();
   }
 
+  setImageObjectData() {
+    this.product.imageArray.forEach((item) => {
+      const tempImageObject = {
+        image: item,
+        thumbImage: item,
+        title: this.product.title,
+      };
+      this.imageObject.push(tempImageObject);
+    });
+    console.log(this.imageObject);
+  }
   ngOnDestroy() {
     // this.reduxSubscription.unsubscribe();
   }
   checkCart() {
     const cart = this.ngRedux.getState().cart;
     if (cart) {
-      const inCartItem = cart.find(item => item._id === this.product._id);
+      const inCartItem = cart.find((item) => item._id === this.product._id);
       if (inCartItem) {
         this.count = inCartItem.count;
         this.emptyCart = false;
@@ -54,17 +71,14 @@ export class ProductCardComponent implements OnInit, OnDestroy {
       if (this.count === 1) {
         this.count = 0;
         this.emptyCart = true;
-      }
-      else this.count -= 1;
-    }
-    else {
-      this.count += 1
+      } else this.count -= 1;
+    } else {
+      this.count += 1;
     }
     const cartItem = {
       prodId: prodId,
-      type: type
-    }
+      type: type,
+    };
     this.addToCart.emit(cartItem);
   }
-
 }

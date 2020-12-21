@@ -21,7 +21,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatBadgeModule} from '@angular/material/badge';
-
+import { NgImageSliderModule } from 'ng-image-slider';
 
 @NgModule({
   declarations: [
@@ -48,6 +48,7 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatBadgeModule,
+    NgImageSliderModule
   ],
   exports: [
     TestComponent,
@@ -71,6 +72,7 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatBadgeModule,
+    
   ]
 })
 export class SharedModule { }

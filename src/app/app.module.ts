@@ -47,6 +47,7 @@ import {IAppState,rootReducer,INITIAL_STATE} from './store'
     FlexLayoutModule,
     NgReduxModule,
     OrderModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
