@@ -41,9 +41,9 @@ export class ToolBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.checkAuthenticationValidity();
     this.setLoggedInFlag();
     this.setAdminAuthFlag();
-    this.checkAuthenticationValidity();
   }
 
   clickMenu() {

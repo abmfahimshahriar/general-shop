@@ -1,32 +1,33 @@
 <div class="overview">
-    <div class="banner">
-      <ng-image-slider
-        #nav
-        [images]="imageObject"
-        [infinite]="true"
-        [autoSlide]="{ interval: 3, stopOnHover: true }"
-        [imageSize]="{ width: '100%', height: '50%' }"
-        slideImage="1"
-      ></ng-image-slider>
+  <div class="banner">
+    <ng-image-slider
+      #nav
+      [images]="imageObject"
+      [infinite]="true"
+      [autoSlide]="{ interval: 3, stopOnHover: true }"
+      [imageSize]="{ width: '100%', height: '40%' }"
+      [manageImageRatio]="true"
+      slideImage="1"
+    ></ng-image-slider>
+  </div>
+  <div class="featured-products" fxLayout="column" fxLayoutAlign="start center">
+    <div class="header">Featured Products</div>
+    <div *ngIf="!loading" fxLayout="row wrap" fxLayoutAlign="center center">
+      <div class="product-card" *ngFor="let product of featuredProducts">
+        <app-product-card
+          [product]="product"
+          (addToCart)="cartManager($event)"
+        ></app-product-card>
+      </div>
     </div>
-    <div class="featured-products" fxLayout="column" fxLayoutAlign="start center">
-      <div class="header">Featured Products</div>
-      <div *ngIf="!loading" fxLayout="row wrap" fxLayoutAlign="center center">
-        <div class="product-card" *ngFor="let product of featuredProducts">
-          <app-product-card
-            [product]="product"
-            (addToCart)="cartManager($event)"
-          ></app-product-card>
-        </div>
-      </div>
-  
-      <div *ngIf="loading" class="loader">
-        <mat-spinner></mat-spinner>
-      </div>
-      <div class="products-btn">
-        <button mat-raised-button color="primary" [routerLink]="['/products']">
-          Go to all products
-        </button>
-      </div>
+
+    <div *ngIf="loading" class="loader">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div class="products-btn">
+      <button mat-raised-button color="primary" [routerLink]="['/products']">
+        Go to all products
+      </button>
     </div>
   </div>
+</div>
