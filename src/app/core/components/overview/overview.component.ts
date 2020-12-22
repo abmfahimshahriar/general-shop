@@ -10,8 +10,16 @@ import { Component, OnInit } from '@angular/core';
 export class OverviewComponent implements OnInit {
   imageObject = [
     {
-      image: 'https://iili.io/Ka7Lu4.jpg',
-      thumbImage: 'https://iili.io/Ka7Lu4.jpg',
+      image: 'https://iili.io/K1HjTJ.jpg',
+      thumbImage: 'https://iili.io/K1HjTJ.jpg',
+    },
+    {
+      image: 'https://iili.io/K1HVYF.jpg',
+      thumbImage: 'https://iili.io/K1HVYF.jpg',
+    },
+    {
+      image: 'https://iili.io/K1HXpa.png',
+      thumbImage: 'https://iili.io/K1HXpa.png',
     },
   ];
 
