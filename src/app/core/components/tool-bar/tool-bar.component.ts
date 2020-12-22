@@ -10,11 +10,12 @@ import { Subscription } from 'rxjs/internal/Subscription';
 import { Router } from '@angular/router';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../../../store/store';
+import jwtDecode from 'jwt-decode';
 
 @Component({
   selector: 'app-tool-bar',
   templateUrl: './tool-bar.component.html',
-  styleUrls: ['./tool-bar.component.scss']
+  styleUrls: ['./tool-bar.component.scss'],
 })
 export class ToolBarComponent implements OnInit {
   @Output() themeMode = new EventEmitter();
@@ -30,11 +31,11 @@ export class ToolBarComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog,
     private _snackBar: MatSnackBar,
-    private ngRedux: NgRedux<IAppState>,
+    private ngRedux: NgRedux<IAppState>
   ) {
     this.ngRedux.subscribe(() => {
       this.cart = this.ngRedux.getState().cart;
-      const total = this.cart.map(item => item.count);
+      const total = this.cart.map((item) => item.count);
       this.cartTotalItems = total.reduce((a, b) => a + b, 0);
     });
   }
@@ -42,6 +43,7 @@ export class ToolBarComponent implements OnInit {
   ngOnInit(): void {
     this.setLoggedInFlag();
     this.setAdminAuthFlag();
+    this.checkAuthenticationValidity();
   }
 
   clickMenu() {
@@ -52,48 +54,50 @@ export class ToolBarComponent implements OnInit {
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(AuthModalComponent, {
-      autoFocus: false
+      autoFocus: false,
     });
 
     dialogRef.componentInstance.login.subscribe(async (response) => {
       console.log(response.value);
-      this.authService.signInUser(response.value)
-        .subscribe((responseData:any) => {
+      this.authService.signInUser(response.value).subscribe(
+        (responseData: any) => {
           console.log(responseData);
           const user = {
             message: responseData.message,
             userData: {
               token: responseData.userData.token,
-              userId: responseData.userData.userId
-            }
-          }
+              userId: responseData.userData.userId,
+            },
+          };
           localStorage.setItem('userData', JSON.stringify(user));
           this.openSnackBar(responseData);
           this.setLoggedInFlag();
           this.setAdminAuthFlag();
-        }, error => {
+        },
+        (error) => {
           this.error = error.error;
           console.log(this.error);
           this.openSnackBar(this.error);
-        });
+        }
+      );
       dialogRef.close();
     });
 
     dialogRef.componentInstance.signUp.subscribe(async (response) => {
       console.log(response.value);
-      this.authService.signUpUser(response.value)
-        .subscribe(responseData => {
+      this.authService.signUpUser(response.value).subscribe(
+        (responseData) => {
           console.log(responseData);
           this.openSnackBar(responseData);
-        }, error => {
+        },
+        (error) => {
           this.error = error.error;
           console.log(this.error);
           this.openSnackBar(this.error);
-        });
+        }
+      );
       dialogRef.close();
     });
-
-
   }
   changeTheme($event) {
     this.themeMode.emit($event);
@@ -103,9 +107,8 @@ export class ToolBarComponent implements OnInit {
     this._snackBar.openFromComponent(SnackBarComponent, {
       duration: 3000,
       data: {
-        message: data.message
+        message: data.message,
       },
-
     });
   }
 
@@ -116,14 +119,15 @@ export class ToolBarComponent implements OnInit {
       return;
     }
     const userData = storageData.userData;
-    this.subscription = this.authService.getUser(userData).subscribe((data:any) => {
-      if (data.userData.role === 'admin') {
-        this.isAdmin = true;
-      }
-      else {
-        this.isAdmin = false;
-      }
-    });
+    this.subscription = this.authService
+      .getUser(userData)
+      .subscribe((data: any) => {
+        if (data.userData.role === 'admin') {
+          this.isAdmin = true;
+        } else {
+          this.isAdmin = false;
+        }
+      });
   }
 
   setLoggedInFlag() {
@@ -133,14 +137,15 @@ export class ToolBarComponent implements OnInit {
       return;
     }
     const userData = storageData.userData;
-    this.subscription = this.authService.getUser(userData).subscribe((data:any) => {
-      if (data.userData) {
-        this.isLoggedIn = true;
-      }
-      else {
-        this.isLoggedIn = false;
-      }
-    });
+    this.subscription = this.authService
+      .getUser(userData)
+      .subscribe((data: any) => {
+        if (data.userData) {
+          this.isLoggedIn = true;
+        } else {
+          this.isLoggedIn = false;
+        }
+      });
   }
 
   logOut() {
@@ -151,10 +156,20 @@ export class ToolBarComponent implements OnInit {
   }
 
   goToManageProduct() {
-    this.router.navigate(['admin','products']);
+    this.router.navigate(['admin', 'products']);
   }
 
-
-  
-
+  checkAuthenticationValidity() {
+    const storageData = JSON.parse(localStorage.getItem('userData'));
+    if (storageData) {
+      const token = storageData.userData.token;
+      const decodedToken: any = jwtDecode(token);
+      if (decodedToken.exp * 1000 < Date.now()) {
+        this.logOut();
+      } else {
+        this.setAdminAuthFlag();
+        this.setLoggedInFlag();
+      }
+    }
+  }
 }
