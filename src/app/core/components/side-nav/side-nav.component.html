@@ -4,13 +4,13 @@
             <mat-icon>home</mat-icon>
             Home
         </div>
+        <div  [routerLink]="['/products']" class="sidenav-item" (click)="onClickSideNavItem()">
+            <mat-icon>shopping_basket</mat-icon>
+            All Products
+        </div>
         <div  [routerLink]="['/admin/settings']" class="sidenav-item" (click)="onClickSideNavItem()">
             <mat-icon>settings</mat-icon>
             Settings
-        </div>
-        <div  [routerLink]="['/admin/settings']" class="sidenav-item" (click)="onClickSideNavItem()">
-            <mat-icon>calendar_today</mat-icon>
-            Calender
         </div>
         <div  [routerLink]="['/admin/settings']" class="sidenav-item" (click)="onClickSideNavItem()">
             <mat-icon>credit_card</mat-icon>
