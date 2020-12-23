@@ -11,7 +11,6 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { SideNavService } from '../../services/side-nav.service';
 import { AuthModalComponent } from '../auth-modal/auth-modal.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AdminAuthGuardService } from '../../../admin/services/admin-auth-guard.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { Router } from '@angular/router';
 import { NgRedux } from '@angular-redux/store';
