@@ -49,12 +49,7 @@ export class ToolBarComponent implements OnInit {
       this.cartTotalItems = total.reduce((a, b) => a + b, 0);
     });
   }
-  checkReduxAuth() {
-    this.ngRedux.dispatch({ type: SET_AUTHENTICATED });
-  }
-  checkReduxUnAuth() {
-    this.ngRedux.dispatch({ type: SET_UNAUTHENTICATED });
-  }
+
   ngOnInit(): void {
     this.checkAuthenticationValidity();
   }
@@ -173,10 +168,6 @@ export class ToolBarComponent implements OnInit {
     this.ngRedux.dispatch({ type: SET_UNAUTHENTICATED });
     this.ngRedux.dispatch({ type: SET_UNAUTHENTICATED_ADMIN });
     this.router.navigate(['']);
-  }
-
-  goToManageProduct() {
-    this.router.navigate(['admin', 'products']);
   }
 
   checkAuthenticationValidity() {

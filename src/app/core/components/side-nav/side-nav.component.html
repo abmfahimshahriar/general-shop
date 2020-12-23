@@ -8,13 +8,17 @@
             <mat-icon>shopping_basket</mat-icon>
             All Products
         </div>
+        <div *ngIf="authenticatedAsAdmin" [routerLink]="['/admin/products']" class="sidenav-item" (click)="onClickSideNavItem()">
+            <mat-icon>dashboard</mat-icon>
+            Manage products
+        </div>
+        <div *ngIf="authenticatedAsAdmin" [routerLink]="['/admin/orders']" class="sidenav-item" (click)="onClickSideNavItem()">
+            <mat-icon>receipt</mat-icon>
+            Manage orders
+        </div>
         <div *ngIf="authenticatedAsAdmin" [routerLink]="['/admin/settings']" class="sidenav-item" (click)="onClickSideNavItem()">
             <mat-icon>settings</mat-icon>
             Settings
-        </div>
-        <div *ngIf="authenticatedAsAdmin" [routerLink]="['/admin/settings']" class="sidenav-item" (click)="onClickSideNavItem()">
-            <mat-icon>credit_card</mat-icon>
-            Credit Card
         </div>
     </div>
 </mat-drawer>

@@ -1,32 +1,51 @@
 <div class="app-toolbar toolbar-content">
-    <mat-toolbar>
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
-            (click)="clickMenu()">
-            <mat-icon>menu</mat-icon>
-        </button>
-        <span [routerLink]="['/']" class="cursor">General Shop</span>
-        <span class="example-spacer"></span>
-        <button *ngIf="!authenticated" mat-icon-button class="example-icon favorite-icon" (click)="authentication()">
-            <mat-icon>login</mat-icon>
-        </button>
-        <button *ngIf="authenticated" mat-icon-button [matMenuTriggerFor]="menu">
-            <mat-icon>account_circle</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-            <button *ngIf="authenticatedAsAdmin" mat-menu-item (click)="goToManageProduct()">
-                Manage Products
-            </button>
-            <button *ngIf="authenticatedAsAdmin" [routerLink]="['/admin/orders']" mat-menu-item>
-                Manage Orders
-            </button>
-            <button *ngIf="!authenticatedAsAdmin" [routerLink]="['/my-orders']" mat-menu-item>
-                My Orders
-            </button>
-            <button mat-menu-item (click)="logOut()">
-                Log out
-            </button>
-        </mat-menu>
-        <!-- <div *ngIf="authenticated">
+  <mat-toolbar>
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with menu icon"
+      (click)="clickMenu()"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span [routerLink]="['/']" class="cursor">General Shop</span>
+    <span class="example-spacer"></span>
+    <button
+      *ngIf="!authenticated"
+      mat-icon-button
+      class="example-icon favorite-icon"
+      (click)="authentication()"
+    >
+      <mat-icon>login</mat-icon>
+    </button>
+    <button *ngIf="authenticated" mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button
+        *ngIf="authenticatedAsAdmin"
+        mat-menu-item
+        [routerLink]="['/admin/products']"
+      >
+        Manage Products
+      </button>
+      <button
+        *ngIf="authenticatedAsAdmin"
+        [routerLink]="['/admin/orders']"
+        mat-menu-item
+      >
+        Manage Orders
+      </button>
+      <button
+        *ngIf="!authenticatedAsAdmin"
+        [routerLink]="['/my-orders']"
+        mat-menu-item
+      >
+        My Orders
+      </button>
+      <button mat-menu-item (click)="logOut()">Log out</button>
+    </mat-menu>
+    <!-- <div *ngIf="authenticated">
             Authenticated
         </div>
         <div *ngIf="authenticatedAsAdmin">
@@ -38,14 +57,16 @@
         <button mat-icon-button class="example-icon" (click)="checkReduxUnAuth()">
             <mat-icon>invert_colors</mat-icon> -
         </button> -->
-        <button mat-icon-button [matMenuTriggerFor]="cartMenu">
-            <mat-icon [matBadge]="cartTotalItems" matBadgeColor="warn">shopping_cart</mat-icon>
-        </button>
-        <mat-menu #cartMenu="matMenu">
-            <app-cart-menu></app-cart-menu>
-        </mat-menu>
-        <button mat-icon-button class="example-icon" (click)="changeTheme($event)">
-            <mat-icon>invert_colors</mat-icon>
-        </button>
-    </mat-toolbar>
+    <button mat-icon-button [matMenuTriggerFor]="cartMenu">
+      <mat-icon [matBadge]="cartTotalItems" matBadgeColor="warn"
+        >shopping_cart</mat-icon
+      >
+    </button>
+    <mat-menu #cartMenu="matMenu">
+      <app-cart-menu></app-cart-menu>
+    </mat-menu>
+    <button mat-icon-button class="example-icon" (click)="changeTheme($event)">
+      <mat-icon>invert_colors</mat-icon>
+    </button>
+  </mat-toolbar>
 </div>
