@@ -18,3 +18,8 @@ export const productUrls = {
     deleteOrder: baseUrl + 'orders/deleteOrder/',
     myOrders: baseUrl + 'orders/myOrders/',
 }
+
+export const settingsUrls = {
+    getCoverPhotos: baseUrl + 'settings/coverPhotos',
+    addCoverPhotos: baseUrl + 'settings/addCoverPhotos',
+}

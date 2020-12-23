@@ -1,3 +1,4 @@
+import { AdminSettingsService } from './services/admin-settings.service';
 import { SnackBarComponent } from './../shared/components/snack-bar/snack-bar.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
@@ -53,7 +54,8 @@ import { CoverPhotoModalComponent } from './components/cover-photo-modal/cover-p
     ])
   ],
   providers: [
-    AdminAuthGuardService
+    AdminAuthGuardService,
+    AdminSettingsService,
   ],
   entryComponents: [
     SnackBarComponent,
