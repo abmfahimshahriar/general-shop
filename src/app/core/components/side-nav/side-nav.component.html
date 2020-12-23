@@ -16,6 +16,10 @@
             <mat-icon>receipt</mat-icon>
             Manage orders
         </div>
+        <div *ngIf="!authenticatedAsAdmin && authenticated" [routerLink]="['/my-orders']" class="sidenav-item" (click)="onClickSideNavItem()">
+            <mat-icon>receipt</mat-icon>
+            My orders
+        </div>
         <div *ngIf="authenticatedAsAdmin" [routerLink]="['/admin/settings']" class="sidenav-item" (click)="onClickSideNavItem()">
             <mat-icon>settings</mat-icon>
             Settings

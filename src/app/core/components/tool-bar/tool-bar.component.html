@@ -37,7 +37,7 @@
         Manage Orders
       </button>
       <button
-        *ngIf="!authenticatedAsAdmin"
+        *ngIf="!authenticatedAsAdmin && authenticated"
         [routerLink]="['/my-orders']"
         mat-menu-item
       >
@@ -45,18 +45,6 @@
       </button>
       <button mat-menu-item (click)="logOut()">Log out</button>
     </mat-menu>
-    <!-- <div *ngIf="authenticated">
-            Authenticated
-        </div>
-        <div *ngIf="authenticatedAsAdmin">
-            Admin Authenticated
-        </div>
-        <button mat-icon-button class="example-icon" (click)="checkReduxAuth()">
-            <mat-icon>invert_colors</mat-icon> + 
-        </button>
-        <button mat-icon-button class="example-icon" (click)="checkReduxUnAuth()">
-            <mat-icon>invert_colors</mat-icon> -
-        </button> -->
     <button mat-icon-button [matMenuTriggerFor]="cartMenu">
       <mat-icon [matBadge]="cartTotalItems" matBadgeColor="warn"
         >shopping_cart</mat-icon

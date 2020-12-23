@@ -1,49 +1,50 @@
 <mat-card>
-    <div fxLayout="column">
-        <div>
-            <b>Customer Name:</b> {{orderDetails.cusName}}
-        </div>
-        <div>
-            <b>Customer Address:</b> {{orderDetails.address}}
-        </div>
-        <div>
-            <b>Ordered Products:</b>
-            <ul>
-                <li *ngFor="let prod of orderDetails.products">
-                    {{prod.title}} : {{prod.count}} x {{prod.total}}
-                </li>
-            </ul>
-        </div>
-        <div>
-            <b>Order Total:</b> {{orderDetails.total}}
-        </div>
-        <div>
-            <mat-chip-list>
-                <mat-chip color="accent" selected>
-                    <b>Status:</b> {{orderDetails.status}}
-                </mat-chip>
-            </mat-chip-list>
-        </div>
-        <div>
-            <mat-divider></mat-divider>
-        </div>
-        <div fxLayout="row" fxLayoutAlign="space-between center">
-            <div fxLayout="column" fxLayoutAlign="center center">
-                <button mat-icon-button (click)="chageOrderStatus(orderDetails._id)">
-                    <mat-icon>autorenew</mat-icon>
-                </button>
-                <div>
-                    <b>Change Status</b>
-                </div>
-            </div>
-            <div fxLayout="column" fxLayoutAlign="center center">
-                <button mat-icon-button (click)="onDeleteOrder(orderDetails._id)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-                <div>
-                    <b>Delete Order</b>
-                </div>
-            </div>
-        </div>
+  <div fxLayout="column" fxLayoutGap="16px">
+    <div><b>Customer Name:</b> {{ orderDetails.cusName }}</div>
+    <div><b>Customer Address:</b> {{ orderDetails.address }}</div>
+    <div>
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title> <b>Ordered Products:</b> </mat-panel-title>
+            <mat-panel-description> order details </mat-panel-description>
+          </mat-expansion-panel-header>
+          <ul>
+            <li *ngFor="let prod of orderDetails.products">
+              {{ prod.title }} : {{ prod.count }} x {{ prod.total }}
+            </li>
+          </ul>
+        </mat-expansion-panel>
+      </mat-accordion>
     </div>
+    <div><b>Order Total:</b> {{ orderDetails.total }}</div>
+    <div>
+      <mat-chip-list>
+        <mat-chip color="accent" selected>
+          {{ orderDetails.status }}
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+    <div>
+      <mat-divider></mat-divider>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <button mat-icon-button (click)="chageOrderStatus(orderDetails._id)">
+          <mat-icon>autorenew</mat-icon>
+        </button>
+        <div>
+          <b>Change Status</b>
+        </div>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <button mat-icon-button (click)="onDeleteOrder(orderDetails._id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <div>
+          <b>Delete Order</b>
+        </div>
+      </div>
+    </div>
+  </div>
 </mat-card>

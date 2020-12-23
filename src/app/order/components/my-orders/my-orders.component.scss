@@ -9,3 +9,11 @@
 table {
     width: 100%;
 }
+
+::ng-deep {
+    app-my-orders {
+        .mat-card {
+            height: 100vh;
+        }
+    }
+}
