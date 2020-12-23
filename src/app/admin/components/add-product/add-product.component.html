@@ -1,91 +1,98 @@
 <mat-card>
-    <div fxLayout="column">
-        <div>
-            <h3>Add Product</h3>
+    <div fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-around start"  fxLayout="column" fxLayoutAlign="space-around start" fxLayoutGap="24px" >
+        <div fxFlex.gt-xs="55" fxLayout="column" class="add-product-box">
+            <div class="add-product-title">
+                {{buttonLabel}} product
+            </div>
+            <div>
+                <form [formGroup]="addProductForm">
+                    <div fxLayout="column" fxLayoutGap="32px">
+                        <div fxLayout="row">
+                            <mat-form-field fxFlex="80" appearance="outline">
+                                <mat-label>Title</mat-label>
+                                <input matInput placeholder="title" formControlName="title" required>
+                                <mat-error *ngIf="addProductForm.get('title').hasError('required')">{{'Title required'}}
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row">
+                            <mat-form-field fxFlex="80" appearance="outline">
+                                <mat-label>Company</mat-label>
+                                <input matInput placeholder="company" formControlName="company" required>
+                                <mat-error *ngIf="addProductForm.get('company').hasError('required')">{{'Company required'}}
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row">
+                            <mat-form-field fxFlex="80" appearance="outline">
+                                <mat-label>Description</mat-label>
+                                <textarea matInput placeholder="description" formControlName="description" required></textarea>
+                                <mat-error *ngIf="addProductForm.get('description').hasError('required')">
+                                    {{'Description required'}}
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-checkbox formControlName="featured">Featured</mat-checkbox>
+                        </div>
+                        <div>
+                            <mat-checkbox formControlName="freeShipping">Free Shipping</mat-checkbox>
+                        </div>
+                        <div fxLayout="row">
+                            <mat-form-field fxFlex="80" appearance="outline">
+                                <mat-label>Price</mat-label>
+                                <input matInput placeholder="price" formControlName="price" type="number" required>
+                                <mat-error *ngIf="addProductForm.get('price').hasError('required')">{{'Price required'}}
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <!-- <div>
+                            <input placeholder="image" formControlName="image" type="file" #imageInput (change)="processFile($event)" required>
+                        </div> -->
+                        <div fxLayout="row">
+                            <mat-form-field fxFlex="80" appearance="outline">
+                                <mat-label>First image</mat-label>
+                                <input matInput placeholder="First image" formControlName="firstImage" required>
+                                <mat-error *ngIf="addProductForm.get('firstImage').hasError('required')">{{'Company required'}}
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row">
+                            <mat-form-field fxFlex="80" appearance="outline">
+                                <mat-label>Second image</mat-label>
+                                <input matInput placeholder="Second image" formControlName="secondImage">
+                                <mat-error *ngIf="addProductForm.get('secondImage').hasError('required')">{{'Company required'}}
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row">
+                            <mat-form-field fxFlex="80" appearance="outline">
+                                <mat-label>Thrid image</mat-label>
+                                <input matInput placeholder="Thrid image" formControlName="thirdImage">
+                                <mat-error *ngIf="addProductForm.get('thirdImage').hasError('required')">{{'Company required'}}
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row">
+                            <div fxFlex="80" fxLayout="row" fxLayoutAlign="space-between center" >
+                                <div>
+                                    <button mat-raised-button color="warn" (click)="onCancel()">
+                                        Cancel
+                                    </button>
+                                </div>
+                                <div>
+                                    <button mat-raised-button [disabled]="!addProductForm.valid" color="primary" (click)="onSubmit()">
+                                        {{buttonLabel}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div>
-            <form [formGroup]="addProductForm">
-                <div fxLayout="column" fxLayoutGap="32px">
-                    <div>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Title</mat-label>
-                            <input matInput placeholder="title" formControlName="title" required>
-                            <mat-error *ngIf="addProductForm.get('title').hasError('required')">{{'Title required'}}
-                            </mat-error>
-                        </mat-form-field>
-                    </div>
-                    <div>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Company</mat-label>
-                            <input matInput placeholder="company" formControlName="company" required>
-                            <mat-error *ngIf="addProductForm.get('company').hasError('required')">{{'Company required'}}
-                            </mat-error>
-                        </mat-form-field>
-                    </div>
-                    <div>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Description</mat-label>
-                            <input matInput placeholder="description" formControlName="description" required>
-                            <mat-error *ngIf="addProductForm.get('description').hasError('required')">
-                                {{'Description required'}}
-                            </mat-error>
-                        </mat-form-field>
-                    </div>
-                    <div>
-                        <mat-checkbox formControlName="featured">Featured</mat-checkbox>
-                    </div>
-                    <div>
-                        <mat-checkbox formControlName="freeShipping">Free Shipping</mat-checkbox>
-                    </div>
-                    <div>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Price</mat-label>
-                            <input matInput placeholder="price" formControlName="price" type="number" required>
-                            <mat-error *ngIf="addProductForm.get('price').hasError('required')">{{'Price required'}}
-                            </mat-error>
-                        </mat-form-field>
-                    </div>
-                    <!-- <div>
-                        <input placeholder="image" formControlName="image" type="file" #imageInput (change)="processFile($event)" required>
-                    </div> -->
-                    <div>
-                        <mat-form-field appearance="outline">
-                            <mat-label>First image</mat-label>
-                            <input matInput placeholder="First image" formControlName="firstImage" required>
-                            <mat-error *ngIf="addProductForm.get('firstImage').hasError('required')">{{'Company required'}}
-                            </mat-error>
-                        </mat-form-field>
-                    </div>
-                    <div>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Second image</mat-label>
-                            <input matInput placeholder="Second image" formControlName="secondImage">
-                            <mat-error *ngIf="addProductForm.get('secondImage').hasError('required')">{{'Company required'}}
-                            </mat-error>
-                        </mat-form-field>
-                    </div>
-                    <div>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Thrid image</mat-label>
-                            <input matInput placeholder="Thrid image" formControlName="thirdImage">
-                            <mat-error *ngIf="addProductForm.get('thirdImage').hasError('required')">{{'Company required'}}
-                            </mat-error>
-                        </mat-form-field>
-                    </div>
-                    <div fxLayout="row" fxLayoutGap="32px">
-                        <div>
-                            <button mat-raised-button color="warn" (click)="onCancel()">
-                                Cancel
-                            </button>
-                        </div>
-                        <div>
-                            <button mat-raised-button [disabled]="!addProductForm.valid" color="primary" (click)="onSubmit()">
-                                {{buttonLabel}}
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </form>
+        <div fxFlex.gt-xs="40" class="add-product-box">
+            <app-product-details [productDetails]="addProductForm.value"></app-product-details>
         </div>
     </div>
 </mat-card>

@@ -11,12 +11,14 @@ import { AdminAuthGuardService as AdminAuthGuard } from './services/admin-auth-g
 import { AuthGuardService as AuthGuard } from '../core/services/auth-guard.service';
 import { SingleProductDetailsResolver } from './resolvers/get-single-product-details-resolver';
 import { AdminSettingsComponent } from './components/admin-settings/admin-settings.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 @NgModule({
   declarations: [
     AdminProductsComponent,
     AddProductComponent,
     AdminSettingsComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     CommonModule,

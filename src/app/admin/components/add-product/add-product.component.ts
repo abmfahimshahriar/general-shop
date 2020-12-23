@@ -46,9 +46,9 @@ export class AddProductComponent implements OnInit {
       freeShipping: [this.productDetails?.freeShipping ? this.productDetails?.freeShipping: false, Validators.required],
       price: [this.productDetails?.price, Validators.required],
       // image: [null, Validators.required],
-      firstImage: [null],
-      secondImage: [null],
-      thirdImage: [null],
+      firstImage: [this.productDetails?.imageArray[0],Validators.required],
+      secondImage: [this.productDetails?.imageArray[1],Validators.required],
+      thirdImage: [this.productDetails?.imageArray[2],],
     });
   }
 
