@@ -1,4 +1,6 @@
-export const baseUrl = 'http://localhost:8080/'
+// export const baseUrl = 'http://localhost:8080/'
+export const baseUrl = 'https://general-shop-fahim.herokuapp.com/';
+
 export const authUrls = {
     signIn: baseUrl + 'auth/signin',
     signUp: baseUrl + 'auth/signup',

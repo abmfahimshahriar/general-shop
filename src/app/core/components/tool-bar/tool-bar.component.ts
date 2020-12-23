@@ -66,7 +66,6 @@ export class ToolBarComponent implements OnInit {
     });
 
     dialogRef.componentInstance.login.subscribe(async (response) => {
-      console.log(response.value);
       this.authService.signInUser(response.value).subscribe(
         (responseData: any) => {
           console.log(responseData);
