@@ -6,7 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { IAppState } from '../../../store/store';
 import { NgRedux } from '@angular-redux/store';
-import { UPDATED_CART } from '../../../store/actions';
+import { UPDATED_CART } from '../../../store/types';
 
 @Component({
   selector: 'app-checkout',

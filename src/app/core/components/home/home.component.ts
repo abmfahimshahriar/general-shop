@@ -1,4 +1,4 @@
-import { UPDATED_CART } from '../../../store/actions';
+import { UPDATED_CART } from '../../../store/types';
 import { IAppState } from '../../../store/store';
 import { ProductService } from './../../services/product.service';
 import {

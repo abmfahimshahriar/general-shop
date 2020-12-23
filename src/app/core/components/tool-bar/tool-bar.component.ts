@@ -1,3 +1,9 @@
+import {
+  SET_AUTHENTICATED_ADMIN,
+  SET_UNAUTHENTICATED_ADMIN,
+  SET_AUTHENTICATED,
+  SET_UNAUTHENTICATED,
+} from './../../../store/types';
 import { SnackBarComponent } from './../../../shared/components/snack-bar/snack-bar.component';
 import { AuthenticationService } from './../../services/authentication.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -25,6 +31,8 @@ export class ToolBarComponent implements OnInit {
   isLoggedIn = false;
   isAdmin = false;
   subscription: Subscription;
+  authenticated: boolean;
+  authenticatedAsAdmin: boolean;
   constructor(
     private sideNavService: SideNavService,
     private authService: AuthenticationService,
@@ -35,15 +43,20 @@ export class ToolBarComponent implements OnInit {
   ) {
     this.ngRedux.subscribe(() => {
       this.cart = this.ngRedux.getState().cart;
+      this.authenticated = this.ngRedux.getState().authenticated;
+      this.authenticatedAsAdmin = this.ngRedux.getState().authenticatedAsAdmin;
       const total = this.cart.map((item) => item.count);
       this.cartTotalItems = total.reduce((a, b) => a + b, 0);
     });
   }
-
+  checkReduxAuth() {
+    this.ngRedux.dispatch({ type: SET_AUTHENTICATED });
+  }
+  checkReduxUnAuth() {
+    this.ngRedux.dispatch({ type: SET_UNAUTHENTICATED });
+  }
   ngOnInit(): void {
     this.checkAuthenticationValidity();
-    this.setLoggedInFlag();
-    this.setAdminAuthFlag();
   }
 
   clickMenu() {
@@ -73,6 +86,7 @@ export class ToolBarComponent implements OnInit {
           this.openSnackBar(responseData);
           this.setLoggedInFlag();
           this.setAdminAuthFlag();
+          this.ngRedux.dispatch({ type: SET_AUTHENTICATED });
         },
         (error) => {
           this.error = error.error;
@@ -124,8 +138,10 @@ export class ToolBarComponent implements OnInit {
       .subscribe((data: any) => {
         if (data.userData.role === 'admin') {
           this.isAdmin = true;
+          this.ngRedux.dispatch({ type: SET_AUTHENTICATED_ADMIN });
         } else {
           this.isAdmin = false;
+          this.ngRedux.dispatch({ type: SET_UNAUTHENTICATED_ADMIN });
         }
       });
   }
@@ -142,8 +158,10 @@ export class ToolBarComponent implements OnInit {
       .subscribe((data: any) => {
         if (data.userData) {
           this.isLoggedIn = true;
+          this.ngRedux.dispatch({ type: SET_AUTHENTICATED });
         } else {
           this.isLoggedIn = false;
+          this.ngRedux.dispatch({ type: SET_UNAUTHENTICATED });
         }
       });
   }
@@ -152,6 +170,8 @@ export class ToolBarComponent implements OnInit {
     localStorage.removeItem('userData');
     this.isLoggedIn = false;
     this.isAdmin = false;
+    this.ngRedux.dispatch({ type: SET_UNAUTHENTICATED });
+    this.ngRedux.dispatch({ type: SET_UNAUTHENTICATED_ADMIN });
     this.router.navigate(['']);
   }
 
@@ -170,6 +190,9 @@ export class ToolBarComponent implements OnInit {
         this.setAdminAuthFlag();
         this.setLoggedInFlag();
       }
+    } else {
+      this.setAdminAuthFlag();
+      this.setLoggedInFlag();
     }
   }
 }

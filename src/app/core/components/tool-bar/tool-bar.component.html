@@ -6,26 +6,38 @@
         </button>
         <span [routerLink]="['/']" class="cursor">General Shop</span>
         <span class="example-spacer"></span>
-        <button *ngIf="!isLoggedIn" mat-icon-button class="example-icon favorite-icon" (click)="authentication()">
+        <button *ngIf="!authenticated" mat-icon-button class="example-icon favorite-icon" (click)="authentication()">
             <mat-icon>login</mat-icon>
         </button>
-        <button *ngIf="isLoggedIn" mat-icon-button [matMenuTriggerFor]="menu">
+        <button *ngIf="authenticated" mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon>account_circle</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-            <button *ngIf="isAdmin" mat-menu-item (click)="goToManageProduct()">
+            <button *ngIf="authenticatedAsAdmin" mat-menu-item (click)="goToManageProduct()">
                 Manage Products
             </button>
-            <button *ngIf="isAdmin" [routerLink]="['/admin/orders']" mat-menu-item>
+            <button *ngIf="authenticatedAsAdmin" [routerLink]="['/admin/orders']" mat-menu-item>
                 Manage Orders
             </button>
-            <button *ngIf="!isAdmin" [routerLink]="['/my-orders']" mat-menu-item>
+            <button *ngIf="!authenticatedAsAdmin" [routerLink]="['/my-orders']" mat-menu-item>
                 My Orders
             </button>
             <button mat-menu-item (click)="logOut()">
                 Log out
             </button>
         </mat-menu>
+        <!-- <div *ngIf="authenticated">
+            Authenticated
+        </div>
+        <div *ngIf="authenticatedAsAdmin">
+            Admin Authenticated
+        </div>
+        <button mat-icon-button class="example-icon" (click)="checkReduxAuth()">
+            <mat-icon>invert_colors</mat-icon> + 
+        </button>
+        <button mat-icon-button class="example-icon" (click)="checkReduxUnAuth()">
+            <mat-icon>invert_colors</mat-icon> -
+        </button> -->
         <button mat-icon-button [matMenuTriggerFor]="cartMenu">
             <mat-icon [matBadge]="cartTotalItems" matBadgeColor="warn">shopping_cart</mat-icon>
         </button>

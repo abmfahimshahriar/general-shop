@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {productUrls} from '../../shared/constants/backend.urls'
 import { NgRedux } from '@angular-redux/store';
-import { UPDATED_CART } from 'src/app/store/actions';
+import { UPDATED_CART } from '../../store/types';
 import { IAppState } from 'src/app/store/store';
 
 @Injectable({
