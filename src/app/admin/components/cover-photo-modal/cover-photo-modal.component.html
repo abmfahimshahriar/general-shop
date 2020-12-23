@@ -1,0 +1,58 @@
+<div>
+  <div class="cover-photo-title">Cover photo</div>
+  <div>
+    <form [formGroup]="coverPhotosForm">
+      <div fxLayout="column" fxLayoutGap="32px">
+        <div fxLayout="row">
+          <mat-form-field fxFlex="100" appearance="outline">
+            <mat-label>First image</mat-label>
+            <input
+              matInput
+              placeholder="First image"
+              formControlName="firstImage"
+              required
+            />
+            <mat-error
+              *ngIf="coverPhotosForm.get('firstImage').hasError('required')"
+              >{{ "At least one photo required required" }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row">
+          <mat-form-field fxFlex="100" appearance="outline">
+            <mat-label>Second image</mat-label>
+            <input
+              matInput
+              placeholder="Second image"
+              formControlName="secondImage"
+            />
+          </mat-form-field>
+        </div>
+        <div fxLayout="row">
+          <mat-form-field fxFlex="100" appearance="outline">
+            <mat-label>Thrid image</mat-label>
+            <input
+              matInput
+              placeholder="Thrid image"
+              formControlName="thirdImage"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div fxLayout="row">
+    <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between center" >
+        <div>
+            <button mat-raised-button color="warn" mat-dialog-close (click)="onCancel()">
+                Cancel
+            </button>
+        </div>
+        <div>
+            <button mat-raised-button [disabled]="!coverPhotosForm.valid" color="primary" (click)="onSubmit()">
+                Done
+            </button>
+        </div>
+    </div>
+</div>
+</div>

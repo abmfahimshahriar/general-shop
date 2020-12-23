@@ -12,6 +12,7 @@ import { AuthGuardService as AuthGuard } from '../core/services/auth-guard.servi
 import { SingleProductDetailsResolver } from './resolvers/get-single-product-details-resolver';
 import { AdminSettingsComponent } from './components/admin-settings/admin-settings.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { CoverPhotoModalComponent } from './components/cover-photo-modal/cover-photo-modal.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     AddProductComponent,
     AdminSettingsComponent,
     ProductDetailsComponent,
+    CoverPhotoModalComponent,
   ],
   imports: [
     CommonModule,
@@ -54,7 +56,8 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     AdminAuthGuardService
   ],
   entryComponents: [
-    SnackBarComponent
+    SnackBarComponent,
+    CoverPhotoModalComponent
   ]
 })
 export class AdminModule { }

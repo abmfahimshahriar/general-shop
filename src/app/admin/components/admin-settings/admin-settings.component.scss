@@ -1,0 +1,11 @@
+.settings {
+    height: 100vh;
+}
+.setting-item {
+  border: 0.6px solid #ececec;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  width: 250px;
+  height: 250px;
+  cursor: pointer;
+}
