@@ -1,4 +1,5 @@
-import { take } from 'rxjs/operators';
+import { AdminSettingsService } from './../../../admin/services/admin-settings.service';
+import { take, map } from 'rxjs/operators';
 import { ProductService } from './../../services/product.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,28 +9,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./overview.component.scss'],
 })
 export class OverviewComponent implements OnInit {
-  imageObject = [
-    {
-      image: 'https://iili.io/K1HjTJ.jpg',
-      thumbImage: 'https://iili.io/K1HjTJ.jpg',
-    },
-    {
-      image: 'https://iili.io/K1HVYF.jpg',
-      thumbImage: 'https://iili.io/K1HVYF.jpg',
-    },
-    {
-      image: 'https://iili.io/K1HXpa.png',
-      thumbImage: 'https://iili.io/K1HXpa.png',
-    },
-  ];
+  imageObject;
 
   featuredProducts = [];
   productLimit = 3;
   loading = true;
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private settingsService: AdminSettingsService
+  ) {}
 
   async ngOnInit() {
     await this.getFeaturedProducts();
+    await this.getCoverPhotos();
   }
 
   async getFeaturedProducts() {
@@ -49,5 +41,25 @@ export class OverviewComponent implements OnInit {
 
   cartManager(cartItem) {
     this.productService.cartManagerService(cartItem, this.featuredProducts);
+  }
+
+  async getCoverPhotos() {
+    this.settingsService
+      .getCoverPhotos()
+      .pipe(take(1))
+      .toPromise()
+      .then((res: any) => {
+        const tempCoverPhotos = res.coverPhotos;
+        const imageArray =
+          tempCoverPhotos[tempCoverPhotos.length - 1].imageArray;
+        const tempImageObject = imageArray.map((item) => {
+          return {
+            image: item,
+            thumbImage: item,
+          };
+        });
+        this.imageObject = tempImageObject;
+      })
+      .catch((err) => console.error(err));
   }
 }
