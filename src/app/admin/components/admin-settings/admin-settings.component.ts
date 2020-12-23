@@ -19,7 +19,6 @@ export class AdminSettingsComponent implements OnInit {
   changeCoverPhoto() {
     const dialogRef = this.dialog.open(CoverPhotoModalComponent, {
       autoFocus: false,
-      data: 'hello world'
     });
   }
 }

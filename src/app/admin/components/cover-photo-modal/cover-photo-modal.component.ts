@@ -26,7 +26,6 @@ export class CoverPhotoModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.data);
     this.getCoverPhotos();
   }
 
@@ -50,7 +49,6 @@ export class CoverPhotoModalComponent implements OnInit {
         const tempCoverPhotos = res.coverPhotos;
         this.coverPhotos = tempCoverPhotos[tempCoverPhotos.length - 1];
         this.initForm();
-        console.log(this.coverPhotos);
       })
       .catch((err) => console.error(err));
   }
