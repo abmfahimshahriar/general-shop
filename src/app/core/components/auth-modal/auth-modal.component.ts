@@ -11,20 +11,20 @@ export class AuthModalComponent implements OnInit {
   @Output() login = new EventEmitter<any>();
   @Output() signUp = new EventEmitter<any>();
   hide = true;
-
+  minLength = 6;
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<AuthModalComponent>,
   ) { }
 
   loginForm = this.fb.group({
-    email: ['',[Validators.required]],
-    password: ['',[Validators.required]]
+    email: ['',[Validators.required,Validators.email]],
+    password: ['',[Validators.required,Validators.minLength(this.minLength)]]
   });
 
   signUpForm = this.fb.group({
-    email: ['',[Validators.required]],
-    password: ['',[Validators.required]]
+    email: ['',[Validators.required,Validators.email]],
+    password: ['',[Validators.required,Validators.minLength(this.minLength)]]
   });
 
   onLogin() {
