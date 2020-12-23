@@ -128,7 +128,7 @@
           <button mat-raised-button color="warn" (click)="onCancel()">
             Cancel
           </button>
-          <button  mat-raised-button color="primary" (click)="onSignUp()">
+          <button [disabled]="!signUpForm.valid" mat-raised-button color="primary" (click)="onSignUp()">
             Sign Up
           </button>
         </div>
