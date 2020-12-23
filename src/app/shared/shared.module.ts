@@ -22,12 +22,14 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatBadgeModule} from '@angular/material/badge';
 import { NgImageSliderModule } from 'ng-image-slider';
+import { NoItemsComponent } from './components/no-items/no-items.component';
 
 @NgModule({
   declarations: [
     TestComponent,
     SnackBarComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    NoItemsComponent
   ],
   imports: [
     CommonModule,
@@ -72,7 +74,7 @@ import { NgImageSliderModule } from 'ng-image-slider';
     MatPaginatorModule,
     MatProgressSpinnerModule,
     MatBadgeModule,
-    
+    NoItemsComponent,
   ]
 })
 export class SharedModule { }

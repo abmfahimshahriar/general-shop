@@ -33,7 +33,7 @@
                 <mat-spinner></mat-spinner>
             </div>
             <div *ngIf="noItem">
-                You have not ordered any products yet!
+                <app-no-items [message]="'You have not ordered any products yet!'"></app-no-items>
             </div>
         </div>
     </div>

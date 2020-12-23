@@ -15,7 +15,7 @@
     </div>
     <ng-template #noItems>
         <div fxLayout="row" fxLayoutAlign="center center" class="no-item">
-            There is no items currently in your cart.
+            <app-no-items [message]="'There is no items currently in your cart.'"></app-no-items>
         </div>
     </ng-template>
 </mat-card>
