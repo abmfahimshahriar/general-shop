@@ -8,11 +8,11 @@
             <mat-icon>shopping_basket</mat-icon>
             All Products
         </div>
-        <div  [routerLink]="['/admin/settings']" class="sidenav-item" (click)="onClickSideNavItem()">
+        <div *ngIf="authenticatedAsAdmin" [routerLink]="['/admin/settings']" class="sidenav-item" (click)="onClickSideNavItem()">
             <mat-icon>settings</mat-icon>
             Settings
         </div>
-        <div  [routerLink]="['/admin/settings']" class="sidenav-item" (click)="onClickSideNavItem()">
+        <div *ngIf="authenticatedAsAdmin" [routerLink]="['/admin/settings']" class="sidenav-item" (click)="onClickSideNavItem()">
             <mat-icon>credit_card</mat-icon>
             Credit Card
         </div>
