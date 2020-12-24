@@ -1,6 +1,6 @@
 <mat-card>
     <div fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-around start"  fxLayout="column" fxLayoutAlign="space-around start" fxLayoutGap="24px" >
-        <div fxFlex.gt-xs="55" fxLayout="column" class="add-product-box">
+        <div fxFlex.gt-xs="55" fxFlex="100" fxLayout="column" class="add-product-box">
             <div class="add-product-title">
                 {{buttonLabel}} product
             </div>
@@ -91,7 +91,7 @@
                 </form>
             </div>
         </div>
-        <div fxFlex.gt-xs="40" class="add-product-box">
+        <div fxFlex.gt-xs="40" fxFlex="100" class="add-product-box">
             <app-product-details [productDetails]="addProductForm.value"></app-product-details>
         </div>
     </div>
